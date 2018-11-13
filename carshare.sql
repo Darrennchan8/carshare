@@ -3,8 +3,8 @@ CREATE TABLE parking_lot (
     address VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     state CHAR(2) NOT NULL,
-    zip_code INT(5) NOT NULL,
-    capacity INT UNSIGNED
+    zip_code INT(5) UNSIGNED ZEROFILL NOT NULL,
+    capacity INT UNSIGNED NOT NULL
 );
 
 CREATE TABLE vehicle (
@@ -15,7 +15,7 @@ CREATE TABLE vehicle (
         ON UPDATE CASCADE
     make VARCHAR(255) NOT NULL,
     model VARCHAR(255) NOT NULL,
-    year INT(4) NOT NULL,
+    year INT(4) ZEROFILL NOT NULL,
     color VARCHAR(255) NOT NULL,
     mileage DOUBLE UNSIGNED NOT NULL,
     license_plate_number VARCHAR(8) NOT NULL
@@ -46,8 +46,8 @@ CREATE TABLE maintenance (
         REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-    service_type VARCHAR(1023) PRIMARY KEY,
-    maintenance_date CHAR(10) PRIMARY KEY -- YYYY/MM/DD
+    service_type TEXT PRIMARY KEY,
+    utc BIGINT UNSIGNED PRIMARY KEY
 );
 
 CREATE TABLE trip_details (
@@ -70,14 +70,15 @@ CREATE TABLE vehicle_trips (
         ON UPDATE CASCADE
 );
 
-create table ACCOUNT (
-    email varchar(50) PRIMARY KEY,
-    passHash varchar(100),
-    FirstName varchar(20),
-    LastName varchar(50),
-    address varchar(60),
-    city char(40),
-    state char(40),
-    zipCode decimal,
-    phoneNum decimal,
-    creationDate bigint);
+CREATE TABLE account (
+    email_address VARCHAR(255) PRIMARY KEY,
+    password_hash VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state CHAR(2) NOT NULL,
+    zip_code INT(5) UNSIGNED ZEROFILL NOT NULL,
+    phone_number INT(10) ZEROFILL NOT NULL,
+    creation_date BIGINT UNSIGNED NOT NULL
+);

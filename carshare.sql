@@ -50,13 +50,14 @@ CREATE TABLE maintenance (
     maintenance_date CHAR(10) PRIMARY KEY -- YYYY/MM/DD
 );
 
-create table TRIP_DETAILS (
-    reservation INT AUTO_INCREMENT PRIMARY KEY,
-    reservation_start decimal,
-    reservation_end decimal,
-    actual_start decimal,
-    actual_end decimal,
-    rate decimal);
+CREATE TABLE trip_details (
+    reservation UNSIGNED INT AUTO_INCREMENT PRIMARY KEY,
+    reservation_start BIGINT UNSIGNED NOT NULL,
+    reservation_end BIGINT UNSIGNED NOT NULL,
+    actual_start BIGINT UNSIGNED NOT NULL,
+    actual_end BIGINT UNSIGNED NOT NULL,
+    rate DOUBLE(5, 2) UNSIGNED NOT NULL
+);
 
 create table ACCOUNT (
     email varchar(50) PRIMARY KEY,

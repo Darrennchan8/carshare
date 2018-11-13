@@ -11,7 +11,7 @@ CREATE TABLE vehicle (
     vin CHAR(17) PRIMARY KEY,
     FOREIGN KEY lot_id(lot_id)
         REFERENCES parking_lot(lot_id)
-        ON DELETE CASCADE
+        ON DELETE RESTRICT
         ON UPDATE CASCADE
     make VARCHAR(255) NOT NULL,
     model VARCHAR(255) NOT NULL,
@@ -19,6 +19,15 @@ CREATE TABLE vehicle (
     color VARCHAR(255) NOT NULL,
     mileage DOUBLE UNSIGNED NOT NULL,
     license_plate_number VARCHAR(8) NOT NULL
+);
+
+CREATE TABLE location_recored (
+    FOREIGN KEY vin(vin)
+        REFERENCES parking_lot(lot_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+    coordinates VARCHAR(255) PRIMARY KEY,
+    utc BIGINT UNSIGNED PRIMARY KEY
 );
 
 create table TRIP_DETAILS (

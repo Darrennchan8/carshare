@@ -1,5 +1,5 @@
 CREATE TABLE parking_lot (
-    lot_id INT AUTO_INCREMENT PRIMARY KEY,
+    lot_id UNSIGNED INT AUTO_INCREMENT PRIMARY KEY,
     address VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     state CHAR(2) NOT NULL,
@@ -33,6 +33,12 @@ CREATE TABLE location_recored (
 CREATE TABLE location (
     coordinates VARCHAR(255) PRIMARY KEY,
     utc BIGINT UNSIGNED PRIMARY KEY
+);
+
+CREATE TABLE incident_at (
+    coordinates VARCHAR(255) PRIMARY KEY,
+    utc BIGINT UNSIGNED PRIMARY KEY,
+    record_number UNSIGNED INT AUTO_INCREMENT PRIMARY KEY
 );
 
 create table TRIP_DETAILS (

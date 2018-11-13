@@ -59,6 +59,17 @@ CREATE TABLE trip_details (
     rate DOUBLE(5, 2) UNSIGNED NOT NULL
 );
 
+CREATE TABLE vehicle_trips (
+    FOREIGN KEY vin(vin)
+        REFERENCES vehicle(vin)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+    FOREIGN KEY reservation(reservation)
+        REFERENCES trip_details(reservation)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
 create table ACCOUNT (
     email varchar(50) PRIMARY KEY,
     passHash varchar(100),

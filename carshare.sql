@@ -1,5 +1,5 @@
 CREATE TABLE parking_lot (
-    lot_id UNSIGNED INT AUTO_INCREMENT PRIMARY KEY,
+    lot_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     address VARCHAR(255) NOT NULL,
     city VARCHAR(255) NOT NULL,
     state CHAR(2) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE vehicle (
         ON UPDATE CASCADE
     make VARCHAR(255) NOT NULL,
     model VARCHAR(255) NOT NULL,
-    year INT(4) ZEROFILL NOT NULL,
+    year INT(4) UNSIGNED ZEROFILL NOT NULL,
     color VARCHAR(255) NOT NULL,
     mileage DOUBLE UNSIGNED NOT NULL,
     license_plate_number VARCHAR(8) NOT NULL
@@ -38,7 +38,7 @@ CREATE TABLE location (
 CREATE TABLE incident_at (
     coordinates VARCHAR(255) PRIMARY KEY,
     utc BIGINT UNSIGNED PRIMARY KEY,
-    record_number UNSIGNED INT AUTO_INCREMENT PRIMARY KEY
+    record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 );
 
 CREATE TABLE maintenance (
@@ -51,7 +51,7 @@ CREATE TABLE maintenance (
 );
 
 CREATE TABLE trip_details (
-    reservation UNSIGNED INT AUTO_INCREMENT PRIMARY KEY,
+    reservation INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     reservation_start BIGINT UNSIGNED NOT NULL,
     reservation_end BIGINT UNSIGNED NOT NULL,
     actual_start BIGINT UNSIGNED NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE account (
     city VARCHAR(255) NOT NULL,
     state CHAR(2) NOT NULL,
     zip_code INT(5) UNSIGNED ZEROFILL NOT NULL,
-    phone_number INT(10) ZEROFILL NOT NULL,
+    phone_number INT(10) UNSIGNED ZEROFILL NOT NULL,
     creation_date BIGINT UNSIGNED NOT NULL
 );
 

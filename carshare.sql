@@ -30,6 +30,11 @@ CREATE TABLE location_recored (
     utc BIGINT UNSIGNED PRIMARY KEY
 );
 
+CREATE TABLE location (
+    coordinates VARCHAR(255) PRIMARY KEY,
+    utc BIGINT UNSIGNED PRIMARY KEY
+);
+
 create table TRIP_DETAILS (
     reservation INT AUTO_INCREMENT PRIMARY KEY,
     reservation_start decimal,

@@ -105,3 +105,16 @@ CREATE TABLE incident_record (
     surcharge DOUBLE(7, 2) UNSIGNED DEFAULT 0.00,
     waived DOUBLE(7, 2) UNSIGNED DEFAULT 0.00
 );
+
+CREATE TABLE incident (
+    PRIMARY KEY reservation,
+    PRIMARY KEY record_number,
+    FOREIGN KEY reservation
+        REFERENCES trip_details(reservation)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+    FOREIGN KEY record_number
+        REFERENCES incident_record(record_number)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);

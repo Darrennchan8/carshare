@@ -7,6 +7,20 @@ CREATE TABLE parking_lot (
     capacity INT UNSIGNED
 );
 
+CREATE TABLE vehicle (
+    vin CHAR(17) PRIMARY KEY,
+    FOREIGN KEY lot_id(lot_id)
+        REFERENCES parking_lot(lot_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+    make VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
+    year INT(4) NOT NULL,
+    color VARCHAR(255) NOT NULL,
+    mileage DOUBLE UNSIGNED NOT NULL,
+    license_plate_number VARCHAR(8) NOT NULL
+);
+
 create table TRIP_DETAILS (
     reservation INT AUTO_INCREMENT PRIMARY KEY,
     reservation_start decimal,

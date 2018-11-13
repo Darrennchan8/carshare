@@ -9,7 +9,7 @@ CREATE TABLE parking_lot (
 
 CREATE TABLE vehicle (
     vin CHAR(17) PRIMARY KEY,
-    FOREIGN KEY lot_id(lot_id)
+    FOREIGN KEY lot_id
         REFERENCES parking_lot(lot_id)
         ON DELETE RESTRICT
         ON UPDATE CASCADE
@@ -22,7 +22,7 @@ CREATE TABLE vehicle (
 );
 
 CREATE TABLE location_recored (
-    FOREIGN KEY vin(vin)
+    FOREIGN KEY vin
         REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -42,7 +42,7 @@ CREATE TABLE incident_at (
 );
 
 CREATE TABLE maintenance (
-    FOREIGN KEY vin(vin)
+    FOREIGN KEY vin
         REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -60,11 +60,13 @@ CREATE TABLE trip_details (
 );
 
 CREATE TABLE vehicle_trips (
-    FOREIGN KEY vin(vin)
+    PRIMARY KEY vin,
+    PRIMARY KEY reservation,
+    FOREIGN KEY vin
         REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-    FOREIGN KEY reservation(reservation)
+    FOREIGN KEY reservation
         REFERENCES trip_details(reservation)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -84,11 +86,13 @@ CREATE TABLE account (
 );
 
 CREATE TABLE trips (
-    FOREIGN KEY reservation(reservation)
+    PRIMARY KEY reservation,
+    PRIMARY KEY email_address,
+    FOREIGN KEY reservation
         REFERENCES trip_details(reservation)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-    FOREIGN KEY email_address(email_address)
+    FOREIGN KEY email_address
         REFERENCES account(email_address)
         ON DELETE CASCADE
         ON UPDATE CASCADE

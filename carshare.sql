@@ -97,3 +97,11 @@ CREATE TABLE trips (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+CREATE TABLE incident_record (
+    record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(255) NOT NULL,
+    details TEXT NOT NULL,
+    surcharge DOUBLE(7, 2) UNSIGNED DEFAULT 0.00,
+    waived DOUBLE(7, 2) UNSIGNED DEFAULT 0.00
+);

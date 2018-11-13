@@ -2,7 +2,7 @@
 insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
     values()
 
--- Insert sample data into ACCOUNT
+-- Insert sample data into ACCOUNT.
 insert into ACCOUNT(email, passHash, FirstName, LastName, address, city, state, zipCode, phoneNum, creationDate) 
     values ('rodriguezdl@vcu.edu', '$2a$12$0TBPmJfOif1q4m9DFCQPVOzw4xkQsqWNiiF9dIHGH3Wepz34a3R6C', 'Daniel', 'Rodriguez',
     '340 College Avenue', 'Commack', 'New York', 11725, 2025550149, 1538524728801);  

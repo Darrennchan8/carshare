@@ -82,3 +82,14 @@ CREATE TABLE account (
     phone_number INT(10) ZEROFILL NOT NULL,
     creation_date BIGINT UNSIGNED NOT NULL
 );
+
+CREATE TABLE trips (
+    FOREIGN KEY reservation(reservation)
+        REFERENCES trip_details(reservation)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+    FOREIGN KEY email_address(email_address)
+        REFERENCES account(email_address)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);

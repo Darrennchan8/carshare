@@ -23,7 +23,7 @@ CREATE TABLE vehicle (
 
 CREATE TABLE location_recored (
     FOREIGN KEY vin(vin)
-        REFERENCES parking_lot(lot_id)
+        REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     coordinates VARCHAR(255) PRIMARY KEY,
@@ -43,7 +43,7 @@ CREATE TABLE incident_at (
 
 CREATE TABLE maintenance (
     FOREIGN KEY vin(vin)
-        REFERENCES parking_lot(lot_id)
+        REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE
     service_type VARCHAR(1023) PRIMARY KEY,

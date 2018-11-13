@@ -41,6 +41,15 @@ CREATE TABLE incident_at (
     record_number UNSIGNED INT AUTO_INCREMENT PRIMARY KEY
 );
 
+CREATE TABLE maintenance (
+    FOREIGN KEY vin(vin)
+        REFERENCES parking_lot(lot_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+    service_type VARCHAR(1023) PRIMARY KEY,
+    maintenance_date CHAR(10) PRIMARY KEY -- YYYY/MM/DD
+);
+
 create table TRIP_DETAILS (
     reservation INT AUTO_INCREMENT PRIMARY KEY,
     reservation_start decimal,

@@ -118,3 +118,47 @@ CREATE TABLE incident (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+CREATE TABLE role (
+    role_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    pay_type ENUM('Salaried', 'Hourly'),
+    emp_type ENUM('Full Time', 'Part Time', 'Contractor', 'Intern'),
+);
+
+CREATE TABLE job_type (
+    PRIMARY KEY role_id,
+    FOREIGN KEY role_id
+        REFERENCES role(roleID),
+    FOREIGN KEY email_address
+        REFERENCES employee(email_address), 
+);
+
+CREATE TABLE employee (
+    email_address PRIMARY KEY,
+    ssn INT(9),
+    wage DOUBLE UNSIGNED,
+    bank_account_number INT(10),
+    routing_number INT(9);
+);
+
+CREATE TABLE manager (
+
+);
+
+CREATE TABLE feedback (
+    ticket_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    subject VARCHAR(255),
+    message VARCHAR(255),
+    viewed ENUM('True', 'False'),
+    FOREIGN KEY email_address
+        REFERENCES client(email_address)
+);
+
+CREATE TABLE client (
+    email_address VARCHAR(255) PRIMARY KEY,
+    FOREIGN KEY email_address
+        REFERENCES account(email_address), 
+    drivers_license_num VARCHAR(255),
+    credits INT UNSIGNED,
+);

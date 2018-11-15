@@ -25,16 +25,19 @@ CREATE TABLE location_record (
     vin CHAR(17) NOT NULL,
     coordinates VARCHAR(255) NOT NULL,
     utc BIGINT UNSIGNED NOT NULL,
-    CONSTRAINT FOREIGN KEY (vin) REFERENCES vehicle(vin)
+    FOREIGN KEY (vin) REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     PRIMARY KEY(vin, utc)
 ) ENGINE=InnoDB;
 
 CREATE TABLE incident_at (
-    coordinates VARCHAR(255) PRIMARY KEY,
-    utc BIGINT UNSIGNED PRIMARY KEY,
-    record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+    record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    vin CHAR(17) NOT NULL,
+    utc BIGINT UNSIGNED,
+    FOREIGN KEY (vin, utc) REFERENCES location_record(vin, utc)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE maintenance (

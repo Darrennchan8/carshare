@@ -31,7 +31,7 @@ CREATE TABLE location_record (
     PRIMARY KEY(vin, utc)
 ) ENGINE=InnoDB;
 
-CREATE TABLE incident_at (
+CREATE TABLE incident (
     record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     vin CHAR(17) NOT NULL,
     utc BIGINT UNSIGNED,

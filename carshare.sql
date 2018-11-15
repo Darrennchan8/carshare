@@ -7,6 +7,15 @@ CREATE TABLE parking_lot (
     capacity INT UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE trip_details (
+    reservation INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    reservation_start BIGINT UNSIGNED NOT NULL,
+    reservation_end BIGINT UNSIGNED NOT NULL,
+    actual_start BIGINT UNSIGNED NOT NULL,
+    actual_end BIGINT UNSIGNED NOT NULL,
+    rate DOUBLE(5, 2) UNSIGNED NOT NULL
+) ENGINE=InnoDB;
+
 CREATE TABLE vehicle (
     vin CHAR(17) PRIMARY KEY,
     lot_id INT UNSIGNED NOT NULL,
@@ -23,9 +32,13 @@ CREATE TABLE vehicle (
 
 CREATE TABLE location_record (
     vin CHAR(17) NOT NULL,
-    coordinates VARCHAR(255) NOT NULL,
     utc BIGINT UNSIGNED NOT NULL,
+    coordinates VARCHAR(255) NOT NULL,
+    reservation INT UNSIGNED AUTO_INCREMENT NULL,
     FOREIGN KEY (vin) REFERENCES vehicle(vin)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (reservation) REFERENCES trip_details(reservation)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     PRIMARY KEY(vin, utc)
@@ -48,15 +61,6 @@ CREATE TABLE maintenance (
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     PRIMARY KEY(vin, utc)
-) ENGINE=InnoDB;
-
-CREATE TABLE trip_details (
-    reservation INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    reservation_start BIGINT UNSIGNED NOT NULL,
-    reservation_end BIGINT UNSIGNED NOT NULL,
-    actual_start BIGINT UNSIGNED NOT NULL,
-    actual_end BIGINT UNSIGNED NOT NULL,
-    rate DOUBLE(5, 2) UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
 
 CREATE TABLE vehicle_trips (

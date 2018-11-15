@@ -10,15 +10,15 @@ CREATE TABLE parking_lot (
 CREATE TABLE vehicle (
     vin CHAR(17) PRIMARY KEY,
     lot_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (lot_id) REFERENCES parking_lot(lot_id)
-        ON DELETE RESTRICT
-        ON UPDATE CASCADE,
     make VARCHAR(255) NOT NULL,
     model VARCHAR(255) NOT NULL,
     year INT(4) UNSIGNED ZEROFILL NOT NULL,
     color VARCHAR(255) NOT NULL,
     mileage DOUBLE UNSIGNED NOT NULL,
-    license_plate_number VARCHAR(8) NOT NULL
+    license_plate_number VARCHAR(8) NOT NULL,
+    FOREIGN KEY (lot_id) REFERENCES parking_lot(lot_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE location_record (
@@ -41,12 +41,13 @@ CREATE TABLE incident (
 ) ENGINE=InnoDB;
 
 CREATE TABLE maintenance (
-    FOREIGN KEY vin
-        REFERENCES vehicle(vin)
+    vin CHAR(17) NOT NULL,
+    service_type TEXT NOT NULL,
+    utc BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (vin) REFERENCES vehicle(vin)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
-    service_type TEXT PRIMARY KEY,
-    utc BIGINT UNSIGNED PRIMARY KEY
+        ON UPDATE CASCADE,
+    PRIMARY KEY(vin, utc)
 ) ENGINE=InnoDB;
 
 CREATE TABLE trip_details (

@@ -34,7 +34,7 @@ CREATE TABLE location_record (
     vin CHAR(17) NOT NULL,
     utc BIGINT UNSIGNED NOT NULL,
     coordinates VARCHAR(255) NOT NULL,
-    reservation INT UNSIGNED AUTO_INCREMENT NULL,
+    reservation INT UNSIGNED NULL,
     FOREIGN KEY (vin) REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -42,15 +42,6 @@ CREATE TABLE location_record (
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     PRIMARY KEY(vin, utc)
-) ENGINE=InnoDB;
-
-CREATE TABLE incident (
-    record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    vin CHAR(17) NOT NULL,
-    utc BIGINT UNSIGNED,
-    FOREIGN KEY (vin, utc) REFERENCES location_record(vin, utc)
-        ON DELETE RESTRICT
-        ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE maintenance (
@@ -65,7 +56,7 @@ CREATE TABLE maintenance (
 
 CREATE TABLE vehicle_trips (
     vin CHAR(17) NOT NULL,
-    reservation INT UNSIGNED AUTO_INCREMENT NOT NULL,
+    reservation INT UNSIGNED NOT NULL,
     FOREIGN KEY (vin) REFERENCES vehicle(vin)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -89,7 +80,7 @@ CREATE TABLE account (
 ) ENGINE=InnoDB;
 
 CREATE TABLE trips (
-    reservation INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    reservation INT UNSIGNED PRIMARY KEY,
     email_address VARCHAR(255) NOT NULL,
     FOREIGN KEY (reservation) REFERENCES trip_details(reservation)
         ON DELETE CASCADE
@@ -99,23 +90,14 @@ CREATE TABLE trips (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE incident_record (
-    record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    type VARCHAR(255) NOT NULL,
-    details TEXT NOT NULL,
-    surcharge DOUBLE(7, 2) UNSIGNED DEFAULT 0.00,
-    waived DOUBLE(7, 2) UNSIGNED DEFAULT 0.00
-) ENGINE=InnoDB;
-
 CREATE TABLE incident (
-    PRIMARY KEY reservation,
-    PRIMARY KEY record_number,
-    FOREIGN KEY reservation
-        REFERENCES trip_details(reservation)
+    record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    reservation INT UNSIGNED NULL,
+    type VARCHAR(255) NOT NULL,
+    details TEXT NULL,
+    surcharge DOUBLE(7, 2) UNSIGNED DEFAULT 0.00,
+    waived DOUBLE(7, 2) UNSIGNED DEFAULT 0.00,
+    FOREIGN KEY (reservation) REFERENCES trip_details(reservation)
         ON DELETE RESTRICT
-        ON UPDATE CASCADE
-    FOREIGN KEY record_number
-        REFERENCES incident_record(record_number)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE RESTRICT
 ) ENGINE=InnoDB;

@@ -60,16 +60,15 @@ CREATE TABLE trip_details (
 ) ENGINE=InnoDB;
 
 CREATE TABLE vehicle_trips (
-    PRIMARY KEY vin,
-    PRIMARY KEY reservation,
-    FOREIGN KEY vin
-        REFERENCES vehicle(vin)
+    vin CHAR(17) NOT NULL,
+    reservation INT UNSIGNED AUTO_INCREMENT NOT NULL,
+    FOREIGN KEY (vin) REFERENCES vehicle(vin)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
-    FOREIGN KEY reservation
-        REFERENCES trip_details(reservation)
+        ON UPDATE CASCADE,
+    FOREIGN KEY (reservation) REFERENCES trip_details(reservation)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
+    PRIMARY KEY(vin, reservation)
 ) ENGINE=InnoDB;
 
 CREATE TABLE account (

@@ -154,19 +154,154 @@ insert into employee (email_address, ssn, wage, bank_account_number, routing_num
 insert into employee (email_address, ssn, wage, bank_account_number, routing_number)
     values ('dickson@carshare.com', 473232012, 30, 4738293801, 442392011);
 
--- Insert sample data into feedbcak
+-- Insert sample data into feedback
+insert into feedback (ticket_number, subject, message, viewed, email_address)
+    values (1, 'Great App', 'This is such a great app!', 1);
 
 insert into feedback (ticket_number, subject, message, viewed, email_address)
-    values (1, 'Great App', 'This is such a great app!', )
+    values (2, 'Great Service', 'This service is very convenient!', 2);
 
+insert into feedback (ticket_number, subject, message, viewed, email_address)
+    values (3, 'Service Improvements', 'App does not indicate whether someone is late with the car', 1);
 
+-- Insert sample date into client
+insert into client (email_address, drivers_licens_num, credit_card_num credits) 
+    values ('rodriguezdl@vcu.edu', 58289128, 60114204036205706, , 5);
 
+insert into client (email_address, drivers_licens_num, credit_card_num, credits) 
+    values ('chand3@vcu.edu', 'S530-460-97-370', 4556456898789665, 0);
 
+insert into client (email_address, drivers_licens_num, credit_card_num, credits) 
+    values ('dhinganiv@vcu.edu', 'Y8955507', 4556114810353812, 0);
 
+insert into client (email_address, drivers_licens_num, credit_card_num, credits) 
+    values ('martinkl@gmail.com', 'Y8955507', 4716917753546508, 2);
 
+insert into client (email_address, drivers_licens_num, credit_card_num, credits) 
+    values ('s2dmduke@vcu.edu', 'S-530-718-328-529', 526578639753861, 0);
 
+insert into client (email_address, drivers_licens_num, credit_card_num, credits) 
+    values ('plooer@aol.net', '12169056', 371586777472001, 1.5);
+
+-- Insert sample data into maintenance
+insert into maintenance(vin, service_type, utc)
+    values('1G1ZB5E18BF215943', 'Oil Change', );
+
+insert into maintenance(vin, service_type, utc)
+    values('3VWPD69M51M113790', 'Oil Change', );
+
+insert into maintenance(vin, service_type, utc)
+    values('1G1ZB5E18BF215943', 'Tire Rotation', );
+
+insert into maintenance(vin, service_type, utc)
+    values('3VWPD69M51M113790', 'Tire Rotation', );
+
+insert into maintenance(vin, service_type, utc)
+    values('5TBJN321XYS072757', 'Tire Replacement', );
+
+insert into maintenance(vin, service_type, utc)
+    values('5TBJN321XYS072757', 'Headlight Replacement', );    
+
+insert into maintenance(vin, service_type, utc)
+    values('3VWPD69M51M113790', 'Engine Replacement', );
+
+-- Insert sample data into trip_details
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(1, 1538532022549,1534835683484, 1538530934232, 1534835546230, 16.28);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(2, 1538859608574,1534835683484, 1538530934232, 1534835546230, 15.19);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(3, 1538702498700,15121098655089, 1538701327302, 1512109167948, 12.44);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(4, 1538819777779, 1513927712388, 1538818274507, 1513987869320, 15.85);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(5, 1538560793482, 1527040783398, 1538559512577, 1527040580469, 11.34);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(6, 1538717364106, 1526159566185, 1538717257397, 1526160041030, 16.13);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(7, 1531152531024, 1538676489567, 1531151750464, 1538676007905, 17.65);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(8, 1536190467140, 1516540419270, 1536789356476, 1516541287011, 5.32);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(9, 1536190130399, 1535883560576, 1536189356476, 1535884123533, 5.04);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(10, 1523695600656, 1533049031928, 152693859469, 1533049110829, 9.44); 
+    
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(11, 1524037596188, 1521307310477, 1524036616624, 1521307776096, 16.66);
+
+insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
+    values(12, 1538355920916, 1515020294464, 1538354971429, 1515021161986, 7.95);
+
+-- Insert sample data into incident
+insert into incident(reservation, record_number)
+    values(1, 1);
+
+insert into incident(reservation, record_number)
+    values(2, 2);
+
+insert into incident(reservation, record_number)
+    values(3, 3);
+
+insert into incident(reserrvatiom, record_number)
+    values(4, 4);
+
+--Insert sample data into vehicle
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(1, '1G1ZB5E18BF215943', 'Ford', 'Focus', 2018, 'Black', 2000, 'JJZ-7865');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(2, '1FTCR11T1JUD23467', 'Ford', 'Focus', 2018, 'White', 20,000, 'HVZ-1234');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(1, '1FAFP52U83A163390', 'Honda', 'Civic', 2017, 'Silver', 23756, 'VZA-1234');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(3, '1FDEE14N9MHA80517', 'Honda', 'Fit', 2017, 'White', 12000, 'AZV-5432');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(3, '3VWPD69M51M113790', 'Honda', 'CR-V', 2018, 'Grey', 2300, 'VHA-2030');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(4, '1GTEK14H8DJ565795', 'Tesla', 'Model 3', 2018, 'Black', 2300, 'VHA-2030');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(4, 'JW6AJC1H7RL081260', 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(4, '5TBJN321XYS072757', 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(2, '1GYS4EEJ0CR116546', 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(1, '1G1ZB5E18BF215943', 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
 
 
 
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

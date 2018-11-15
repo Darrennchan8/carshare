@@ -1,53 +1,7 @@
---Insert sample data for parking_lot.
-insert into parking_lot(lot_id, address, city, state, zip_code, capacity) 
-    values (1, '1109 West Marshall Street', 'Richmond', 'VA', 23220, 3);
-
-insert into parking_lot(lot_id, address, city, state, zip_code, capacity) 
-    values (2, '601 West Bacon Street', 'Richmond', 'VA', 23222, 2);
-
-insert into parking_lot(lot_id, address, city, state, zip_code, capacity) 
-    values (3, '200 West Cary Street', 'Richmond', 'VA', 23220, 4);
-
-insert into parking_lot(lot_id, address, city, state, zip_code, capacity) 
-    values (2, '607 North 10th Street', 'Richmond', 'VA', 23220, 3);
-
 -- Insert sample data for TRIP_DETAILS.
 insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(1, 1538532022549, 1534835683484, 15385309342232, 1534835546230, 16.28);
+    values()
 
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(2, 1538532022549, 1534835683484, 1538530934232, 1534835546230, 15.19);
-
- insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(3, 1538859608574, 1512109265089, 1538701327302, 1512109167948, 12.44);
-
- insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(4, 1538819777779, 1513927712988, 1538818274507, 1513927869320, 15.85);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(5,1538560793482, 1527040783398, 1538559512577, 1527040580469, 11.34);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(6, 1538717364106, 1526159566185, 1538717257397, 1526160041030, 16.13);    
-          
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(7, 1531152531024, 1538676489567, 1531151750464, 1538676007905, 17.65);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(8, 1536190468140, 15165404019270, 1536189356476, 1516541287011, 5.32);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(9, 1536190130399, 1535883560576, 1536189356476, 1535884123533, 5.04);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(10, 1523695600656, 1533049031928, 1523693859469, 1533049110829, 9.44);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(11, 1524037596188, 1533049031928, 1523693859469, 1533049110829, 16.66);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(12, 158355920916, 1515020294464, 1538354371429, 1515021161986, 7.95);
-            
 -- Insert sample data into ACCOUNT.
 insert into ACCOUNT(email, passHash, FirstName, LastName, address, city, state, zipCode, phoneNum, creationDate) 
     values ('rodriguezdl@vcu.edu', '$2a$12$0TBPmJfOif1q4m9DFCQPVOzw4xkQsqWNiiF9dIHGH3Wepz34a3R6C', 'Daniel', 'Rodriguez',

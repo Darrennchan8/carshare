@@ -85,14 +85,12 @@ CREATE TABLE account (
 ) ENGINE=InnoDB;
 
 CREATE TABLE trips (
-    PRIMARY KEY reservation,
-    PRIMARY KEY email_address,
-    FOREIGN KEY reservation
-        REFERENCES trip_details(reservation)
+    reservation INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email_address VARCHAR(255) NOT NULL,
+    FOREIGN KEY (reservation) REFERENCES trip_details(reservation)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
-    FOREIGN KEY email_address
-        REFERENCES account(email_address)
+        ON UPDATE CASCADE,
+    FOREIGN KEY (email_address) REFERENCES account(email_address)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;

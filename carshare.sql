@@ -86,3 +86,37 @@ CREATE TABLE incident (
         ON DELETE RESTRICT
         ON UPDATE RESTRICT
 ) ENGINE=InnoDB;
+
+CREATE TABLE client (
+    email_address VARCHAR(255) PRIMARY KEY,
+    drivers_license_number VARCHAR(255),
+    credit_card_number INT(16) UNSIGNED,
+    credits INT,
+    FOREIGN KEY (email_address) REFERENCES account(email_address)
+        ON DELETE CASCADE,
+        ON UPDATE CASCADE, 
+    
+) ENGINE=InnoDB;
+
+CREATE TABLE role (
+    role_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    pay_type enum('Salaried', 'Hourly'),
+    employee_type enum('Full Time', 'Part Time', 'Intern', 'Contractor'),
+);
+
+CREATE TABLE job_type (
+    email_address VARCHAR(255),
+    FOREIGN KEY (email_address) REFERENCES employee(email_address),
+    FOREIGN KEY (role_id) REFERENCES role(role_id),
+) ENGINE=InnoDB;
+
+CREATE TABLE employee (
+    email_address VARCHAR(255) PRIMARY KEY,
+    ssn INT(9) UNSIGNED ZEROFILL,
+    wage DOUBLE(9,2) UNSIGNED NOT NULL,
+    bank_account_number BIGINT UNSIGNED NOT NULL,
+    routing_number BIGINT UNISGNED,
+    FOREIGN KEY (manager_email_address) REFERENCES employee(email_address), 
+) ENGINE=InnoDB;
+

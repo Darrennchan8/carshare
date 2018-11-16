@@ -1,4 +1,4 @@
--- Insert sample data for TRIP_DETAILS.
+e-- Insert sample data for TRIP_DETAILS.
 insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
     values()
 
@@ -240,6 +240,7 @@ insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate
 insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
     values(1, '1G1ZB5E18BF215943', 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
 
+--Insert sample data into
 
 
 

@@ -1,6 +1,40 @@
-e-- Insert sample data for TRIP_DETAILS.
+-- Insert sample data for TRIP_DETAILS.
 insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values()
+    values(1, '1538532022549', '1534835683484', '1538530934232', '1534835546230', 16.28);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(2, '1538532022549', '1524423128022', '1538858554165', '1524422619917', 15.19);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(3, '1538859608574', '1512109265089', '1538701327302', '1512109167948', 12.44);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(4, '1538819777779', '1513927712388', '1538818274507', '1513927869320', 15.85);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(5, '1538560793482', '1527040783398', '1538559512577', '1527040580469', 11.34);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(6, '1538717364106', '1526159566185', '1538717257397', '1526160041030', 16.13);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(7, '1531152531024', '1538676489567', '1531151750464', '1538676007905', 17.65);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(8, '1536190468140', '1516540419270', '1536189356476', '1535884123533', 5.32);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(9, '1536190130399', '1535883560576', '1536189356476', '1535884123533', 5.04);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(10, '1523695600656', '1533049031928', '1523693859469', '1533049110829', 9.44);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(11, '1524037596188', '1521307310477', '1524036616624', '1521307776096', 16.66);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(12, '1538322920916', '1515020294464', '1538354371429', '1515021161986', 7.95);
+
 
 -- Insert sample data into ACCOUNT.
 insert into ACCOUNT(email, passHash, FirstName, LastName, address, city, state, zipCode, phoneNum, creationDate) 
@@ -159,45 +193,8 @@ insert into maintenance(vin, service_type, utc)
 insert into maintenance(vin, service_type, utc)
     values('3VWPD69M51M113790', 'Engine Replacement', );
 
--- Insert sample data into trip_details
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(1, 1538532022549,1534835683484, 1538530934232, 1534835546230, 16.28);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(2, 1538859608574,1534835683484, 1538530934232, 1534835546230, 15.19);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(3, 1538702498700,15121098655089, 1538701327302, 1512109167948, 12.44);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(4, 1538819777779, 1513927712388, 1538818274507, 1513987869320, 15.85);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(5, 1538560793482, 1527040783398, 1538559512577, 1527040580469, 11.34);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(6, 1538717364106, 1526159566185, 1538717257397, 1526160041030, 16.13);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(7, 1531152531024, 1538676489567, 1531151750464, 1538676007905, 17.65);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(8, 1536190467140, 1516540419270, 1536789356476, 1516541287011, 5.32);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(9, 1536190130399, 1535883560576, 1536189356476, 1535884123533, 5.04);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(10, 1523695600656, 1533049031928, 152693859469, 1533049110829, 9.44); 
-    
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(11, 1524037596188, 1521307310477, 1524036616624, 1521307776096, 16.66);
-
-insert into trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate)
-    values(12, 1538355920916, 1515020294464, 1538354971429, 1515021161986, 7.95);
-
 -- Insert sample data into incident
-insert into incident(reservation, record_number)
+insert into incident(record_number, incident_type, details, surcharge, waived)
     values(1, 1);
 
 insert into incident(reservation, record_number)
@@ -240,7 +237,12 @@ insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate
 insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
     values(1, '1G1ZB5E18BF215943', 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
 
---Insert sample data into
+--Insert sample data into location_record
+insert into location_record(vin, utc, coordinates, reservation)
+    values('1G1ZB5E18BF215943', 1538524728801, '37.5452222, -77.4529756', );
+
+
+
 
 
 

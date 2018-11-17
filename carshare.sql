@@ -78,7 +78,7 @@ CREATE TABLE maintenance (
 CREATE TABLE incident (
     record_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     reservation INT UNSIGNED NULL,
-    type VARCHAR(255) NOT NULL,
+    incident_type VARCHAR(255) NOT NULL,
     details TEXT NULL,
     surcharge DOUBLE(7, 2) UNSIGNED DEFAULT 0.00,
     waived DOUBLE(7, 2) UNSIGNED DEFAULT 0.00,
@@ -89,34 +89,49 @@ CREATE TABLE incident (
 
 CREATE TABLE client (
     email_address VARCHAR(255) PRIMARY KEY,
-    drivers_license_number VARCHAR(255),
-    credit_card_number INT(16) UNSIGNED,
-    credits INT,
+    drivers_license_number VARCHAR(255) NOT NULL,
+    credit_card_number INT(16) UNSIGNED NOT NULL,
+    credits INT DEFAULT 0,
     FOREIGN KEY (email_address) REFERENCES account(email_address)
-        ON DELETE CASCADE,
-        ON UPDATE CASCADE, 
-    
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE role (
     role_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    pay_type enum('Salaried', 'Hourly'),
-    employee_type enum('Full Time', 'Part Time', 'Intern', 'Contractor'),
+    name VARCHAR(255) NOT NULL,
+    pay_type ENUM('Salaried', 'Hourly') NOT NULL,
+    employee_type ENUM('Full Time', 'Part Time', 'Intern', 'Contractor') NOT NULL,
 );
 
 CREATE TABLE job_type (
-    email_address VARCHAR(255),
-    FOREIGN KEY (email_address) REFERENCES employee(email_address),
-    FOREIGN KEY (role_id) REFERENCES role(role_id),
+    email_address VARCHAR(255) NOT NULL,
+    role_id INT UNISGNED NOT NULL,
+    FOREIGN KEY (email_address) REFERENCES employee(email_address)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES role(role_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE employee (
     email_address VARCHAR(255) PRIMARY KEY,
-    ssn INT(9) UNSIGNED ZEROFILL,
+    ssn INT(9) UNSIGNED ZEROFILL NOT NULL,
     wage DOUBLE(9,2) UNSIGNED NOT NULL,
     bank_account_number BIGINT UNSIGNED NOT NULL,
-    routing_number BIGINT UNISGNED,
-    FOREIGN KEY (manager_email_address) REFERENCES employee(email_address), 
+    routing_number BIGINT UNISGNED NOT NULL,
+    FOREIGN KEY (manager_email_address) REFERENCES employee(email_address)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE 
 ) ENGINE=InnoDB;
 
+CREATE TABLE feedback(
+    ticket_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    viewed BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (email_address) REFERENCES account(email_address)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;

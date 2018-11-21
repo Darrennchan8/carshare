@@ -50,11 +50,17 @@ INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plat
     ('1GYS4EEJ0CR116546', 2, 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798'),
     ('1G1ZB5E18BF215944', 1, 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
 
---Insert sample data into location_record
-INSERT INTO location_record(vin, utc, coordinates, reservation)
-    VALUES('1G1ZB5E18BF215943', 1538524728801, '37.5452222, -77.4529756',  );
-
-
+INSERT INTO location_record(vin, utc, coordinates, reservation) VALUES
+    ('1G1ZB5E18BF215943', 1538524728801, '37.5452222, -77.4529756', 3),
+    ('1FTCR11T1JUD23467', 1538524728801, '35.6895, 139.6917', NULL),
+    ('1FAFP52U83A163390', 1538864010510, '27.6648,81.5158', NULL),
+    ('1FDEE14N9MHA80517', 1538567650524, '39.9042,116.4074', NULL),
+    ('3VWPD69M51M113790', 1539049922050, '39.9042,116.4074', 6),
+    ('1GTEK14H8DJ565795', 1539049922050, '23.5505,46.6333', 10),
+    ('JW6AJC1H7RL081260', 1539065097120, '4.7110,74.0721', NULL),
+    ('5TBJN321XYS072757', 1539065097120, '53.4808,2.2426', 7),
+    ('1GYS4EEJ0CR116546', 1539065097120, '1539065097120', NULL),
+    ('1D4SE5GT7BC646986', 1539065097120, '4.7110,74.0721', NULL);
 
 -- Insert sample data into incident_record
 INSERT INTO incident_record(record_number. type. details, surcharge, waived)

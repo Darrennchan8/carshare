@@ -52,7 +52,7 @@ INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plat
 
 --Insert sample data into location_record
 INSERT INTO location_record(vin, utc, coordinates, reservation)
-    VALUES('1G1ZB5E18BF215943', 1538524728801, '37.5452222, -77.4529756', );
+    VALUES('1G1ZB5E18BF215943', 1538524728801, '37.5452222, -77.4529756',  );
 
 
 

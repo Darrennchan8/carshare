@@ -34,7 +34,7 @@ INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plat
     ('JW6AJC1H7RL081260', 4, 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015'),
     ('5TBJN321XYS072757', 4, 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222'),
     ('1GYS4EEJ0CR116546', 2, 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798'),
-    ('1G1ZB5E18BF215944', 1, 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
+    ('1D4SE5GT7BC646986', 1, 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
 
 INSERT INTO trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate, email_address, vin) VALUES
     (1, '1538532022549', '1534835683484', '1538530934232', '1534835546230', 16.28, 'rodriguezdl@vcu.edu', '1G1ZB5E18BF215943'),

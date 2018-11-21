@@ -188,27 +188,3 @@ INSERT INTO incident(reservation, record_number)
 
 INSERT INTO incident(reserrvatiom, record_number)
     VALUES(4, 4);
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

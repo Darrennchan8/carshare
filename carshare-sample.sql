@@ -1,40 +1,15 @@
--- Insert sample data for TRIP_DETAILS.
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(1, '1538532022549', '1534835683484', '1538530934232', '1534835546230', 16.28);
+--Insert sample data for parking_lot
+insert into parking_lot (lot_id, address, city, state, zip_code, capacity)
+    values(1, '1109 West Marshall Street', 'Richmond', 'VA', 23220, 3);
 
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(2, '1538532022549', '1524423128022', '1538858554165', '1524422619917', 15.19);
+insert into parking_lot (lot_id, address, city, state, zip_code, capacity)
+    values(2, '601 West Bacon Street', 'Richmond', 'VA', 23222, 2);
 
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(3, '1538859608574', '1512109265089', '1538701327302', '1512109167948', 12.44);
+insert into parking_lot (lot_id, address, city, state, zip_code, capacity)
+    values(3, '200 West Cary Street', 'Richmond', 'VA', 23220, 4);
 
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(4, '1538819777779', '1513927712388', '1538818274507', '1513927869320', 15.85);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(5, '1538560793482', '1527040783398', '1538559512577', '1527040580469', 11.34);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(6, '1538717364106', '1526159566185', '1538717257397', '1526160041030', 16.13);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(7, '1531152531024', '1538676489567', '1531151750464', '1538676007905', 17.65);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(8, '1536190468140', '1516540419270', '1536189356476', '1535884123533', 5.32);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(9, '1536190130399', '1535883560576', '1536189356476', '1535884123533', 5.04);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(10, '1523695600656', '1533049031928', '1523693859469', '1533049110829', 9.44);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(11, '1524037596188', '1521307310477', '1524036616624', '1521307776096', 16.66);
-
-insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    values(12, '1538322920916', '1515020294464', '1538354371429', '1515021161986', 7.95);
-
+insert into parking_lot (lot_id, address, city, state, zip_code, capacity)
+    values(4, '607 North 10th Street', 'Richmond', 'VA', 23220, 3);
 
 -- Insert sample data into ACCOUNT.
 insert into ACCOUNT(email, passHash, FirstName, LastName, address, city, state, zipCode, phoneNum, creationDate) 
@@ -73,6 +48,80 @@ insert into ACCOUNT(email, passHash, FirstName, LastName, address, city, state, 
     values ('Jmh@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', 'Hakiziman', 'Jean-Marie',
     '2763 Payne Street', 'Davenport', 'Virginia', 24239, 2768591677, 1539096222812); 
 
+-- Insert sample data for TRIP_DETAILS.
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(1, '1538532022549', '1534835683484', '1538530934232', '1534835546230', 16.28);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(2, '1538532022549', '1524423128022', '1538858554165', '1524422619917', 15.19);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(3, '1538859608574', '1512109265089', '1538701327302', '1512109167948', 12.44);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(4, '1538819777779', '1513927712388', '1538818274507', '1513927869320', 15.85);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(5, '1538560793482', '1527040783398', '1538559512577', '1527040580469', 11.34);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(6, '1538717364106', '1526159566185', '1538717257397', '1526160041030', 16.13);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(7, '1531152531024', '1538676489567', '1531151750464', '1538676007905', 17.65);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(8, '1536190468140', '1516540419270', '1536189356476', '1535884123533', 5.32);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(9, '1536190130399', '1535883560576', '1536189356476', '1535884123533', 5.04);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(10, '1523695600656', '1533049031928', '1523693859469', '1533049110829', 9.44);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(11, '1524037596188', '1521307310477', '1524036616624', '1521307776096', 16.66);
+
+insert into TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
+    values(12, '1538322920916', '1515020294464', '1538354371429', '1515021161986', 7.95);
+
+--Insert sample data into vehicle
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(1, '1G1ZB5E18BF215943', 'Ford', 'Focus', 2018, 'Black', 2000, 'JJZ-7865');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(2, '1FTCR11T1JUD23467', 'Ford', 'Focus', 2018, 'White', 20,000, 'HVZ-1234');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(1, '1FAFP52U83A163390', 'Honda', 'Civic', 2017, 'Silver', 23756, 'VZA-1234');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(3, '1FDEE14N9MHA80517', 'Honda', 'Fit', 2017, 'White', 12000, 'AZV-5432');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(3, '3VWPD69M51M113790', 'Honda', 'CR-V', 2018, 'Grey', 2300, 'VHA-2030');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(4, '1GTEK14H8DJ565795', 'Tesla', 'Model 3', 2018, 'Black', 2300, 'VHA-2030');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(4, 'JW6AJC1H7RL081260', 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(4, '5TBJN321XYS072757', 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(2, '1GYS4EEJ0CR116546', 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798');
+
+insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
+    values(1, '1G1ZB5E18BF215943', 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
+
+--Insert sample data into location_record
+insert into location_record(vin, utc, coordinates, reservation)
+    values('1G1ZB5E18BF215943', 1538524728801, '37.5452222, -77.4529756', );
+
+
+
 -- Insert sample data into incident_record
 insert into incident_record(record_number. type. details, surcharge, waived)
     values(1, 'Fender Bender', 'Driver involved in fender bender', 1000, 800);
@@ -109,7 +158,7 @@ insert into role(role_id, name, pay_type, emp_type)
     values(6, 'Software Engineer', 1, 4);
 
 insert into role(role_id, name, pay_type, emp_type)
-    values(7, 'Software Engineer', 1, 1);
+    values(7, 'Software Engineer', 1, 1);x
 
 insert into role(role_id, name, pay_type, emp_type)
     values(8, 'Customer Service Representative', 1, 3);
@@ -206,40 +255,7 @@ insert into incident(reservation, record_number)
 insert into incident(reserrvatiom, record_number)
     values(4, 4);
 
---Insert sample data into vehicle
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(1, '1G1ZB5E18BF215943', 'Ford', 'Focus', 2018, 'Black', 2000, 'JJZ-7865');
 
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(2, '1FTCR11T1JUD23467', 'Ford', 'Focus', 2018, 'White', 20,000, 'HVZ-1234');
-
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(1, '1FAFP52U83A163390', 'Honda', 'Civic', 2017, 'Silver', 23756, 'VZA-1234');
-
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(3, '1FDEE14N9MHA80517', 'Honda', 'Fit', 2017, 'White', 12000, 'AZV-5432');
-
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(3, '3VWPD69M51M113790', 'Honda', 'CR-V', 2018, 'Grey', 2300, 'VHA-2030');
-
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(4, '1GTEK14H8DJ565795', 'Tesla', 'Model 3', 2018, 'Black', 2300, 'VHA-2030');
-
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(4, 'JW6AJC1H7RL081260', 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015');
-
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(4, '5TBJN321XYS072757', 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222');
-
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(2, '1GYS4EEJ0CR116546', 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798');
-
-insert into vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)
-    values(1, '1G1ZB5E18BF215943', 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
-
---Insert sample data into location_record
-insert into location_record(vin, utc, coordinates, reservation)
-    values('1G1ZB5E18BF215943', 1538524728801, '37.5452222, -77.4529756', );
 
 
 

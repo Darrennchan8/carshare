@@ -1,15 +1,9 @@
 --Insert sample data for parking_lot
-insert into parking_lot (lot_id, address, city, state, zip_code, capacity)
-    values(1, '1109 West Marshall Street', 'Richmond', 'VA', 23220, 3);
-
-insert into parking_lot (lot_id, address, city, state, zip_code, capacity)
-    values(2, '601 West Bacon Street', 'Richmond', 'VA', 23222, 2);
-
-insert into parking_lot (lot_id, address, city, state, zip_code, capacity)
-    values(3, '200 West Cary Street', 'Richmond', 'VA', 23220, 4);
-
-insert into parking_lot (lot_id, address, city, state, zip_code, capacity)
-    values(4, '607 North 10th Street', 'Richmond', 'VA', 23220, 3);
+INSERT INTO parking_lot(lot_id, address, city, state, zip_code, capacity) VALUES
+    (1, '1109 West Marshall Street', 'Richmond', 'VA', 23220, 3),
+    (2, '601 West Bacon Street', 'Richmond', 'VA', 23222, 2),
+    (3, '200 West Cary Street', 'Richmond', 'VA', 23220, 4),
+    (4, '607 North 10th Street', 'Richmond', 'VA', 23220, 3);
 
 -- Insert sample data into ACCOUNT.
 insert into ACCOUNT(email, passHash, FirstName, LastName, address, city, state, zipCode, phoneNum, creationDate) 

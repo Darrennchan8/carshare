@@ -63,16 +63,16 @@ INSERT INTO location_record(vin, utc, coordinates, reservation) VALUES
     ('1D4SE5GT7BC646986', 1539065097120, '4.7110,74.0721', NULL);
 
 INSERT INTO maintenance(vin, service_type, utc) VALUES
-('1G1ZB5E18BF215943', 'Oil Change', 1503201600000),
-('1FTCR11T1JUD23467', 'Tire Rotation', 1503201600001),
-('1FAFP52U83A163390', 'Tire Change', 1503201600002),
-('1FDEE14N9MHA80517', 'Transmission Fluid Replacement', 1503201600000),
-('1G1ZB5E18BF215943', 'Engine Replacement', 1510722000004),
-('1G1ZB5E18BF215943', 'Headlight Replacement', 1510722000000),    
-('JW6AJC1H7RL081260', 'Tailight Replacement', 1519534800006),
-('1D4SE5GT7BC646986', 'Fuel Pump Replacement', 151478280080),
-('JW6AJC1H7RL081260', 'State Inspection', 1529899200200),
-('1GYS4EEJ0CR116546', 'Emission', 1529899200100);
+    ('1G1ZB5E18BF215943', 'Oil Change', 1503201600000),
+    ('1FTCR11T1JUD23467', 'Tire Rotation', 1503201600001),
+    ('1FAFP52U83A163390', 'Tire Change', 1503201600002),
+    ('1FDEE14N9MHA80517', 'Transmission Fluid Replacement', 1503201600000),
+    ('1G1ZB5E18BF215943', 'Engine Replacement', 1510722000004),
+    ('1G1ZB5E18BF215943', 'Headlight Replacement', 1510722000000),    
+    ('JW6AJC1H7RL081260', 'Tailight Replacement', 1519534800006),
+    ('1D4SE5GT7BC646986', 'Fuel Pump Replacement', 151478280080),
+    ('JW6AJC1H7RL081260', 'State Inspection', 1529899200200),
+    ('1GYS4EEJ0CR116546', 'Emission', 1529899200100);
 
 INSERT INTO incident(record_number, reservation, incident_type, details, surcharge, waived) VALUES
     (1, 1, 'Fender Bender', 'Driver involved in fender bender', 1000, 800),

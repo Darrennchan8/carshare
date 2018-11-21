@@ -16,7 +16,7 @@ CREATE TABLE account (
     city VARCHAR(255) NOT NULL,
     state CHAR(2) NOT NULL,
     zip_code INT(5) UNSIGNED ZEROFILL NOT NULL,
-    phone_number INT(10) UNSIGNED ZEROFILL NOT NULL,
+    phone_number BIGINT(10) UNSIGNED ZEROFILL NOT NULL,
     creation_date BIGINT UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
 

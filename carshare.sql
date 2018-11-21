@@ -20,6 +20,20 @@ CREATE TABLE account (
     creation_date BIGINT UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
 
+CREATE TABLE vehicle (
+    vin CHAR(17) PRIMARY KEY,
+    lot_id INT UNSIGNED NOT NULL,
+    make VARCHAR(255) NOT NULL,
+    model VARCHAR(255) NOT NULL,
+    year INT(4) UNSIGNED ZEROFILL NOT NULL,
+    color VARCHAR(255) NOT NULL,
+    mileage DOUBLE UNSIGNED NOT NULL,
+    license_plate_number VARCHAR(8) NOT NULL,
+    FOREIGN KEY (lot_id) REFERENCES parking_lot(lot_id)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
 CREATE TABLE trip_details (
     reservation INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     reservation_start BIGINT UNSIGNED NOT NULL,
@@ -31,19 +45,8 @@ CREATE TABLE trip_details (
     vin CHAR(17) NOT NULL,
     FOREIGN KEY (email_address) REFERENCES account(email_address)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
-) ENGINE=InnoDB;
-
-CREATE TABLE vehicle (
-    vin CHAR(17) PRIMARY KEY,
-    lot_id INT UNSIGNED NOT NULL,
-    make VARCHAR(255) NOT NULL,
-    model VARCHAR(255) NOT NULL,
-    year INT(4) UNSIGNED ZEROFILL NOT NULL,
-    color VARCHAR(255) NOT NULL,
-    mileage DOUBLE UNSIGNED NOT NULL,
-    license_plate_number VARCHAR(8) NOT NULL,
-    FOREIGN KEY (lot_id) REFERENCES parking_lot(lot_id)
+        ON UPDATE CASCADE,
+    FOREIGN KEY (vin) REFERENCES vehicle(vin)
         ON DELETE RESTRICT
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;

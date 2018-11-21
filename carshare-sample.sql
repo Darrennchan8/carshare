@@ -24,6 +24,18 @@ INSERT INTO account(email_address, password_hash, first_name, last_name, address
     ('Jmh@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', 'Hakiziman', 'Jean-Marie',
         '2763 Payne Street', 'Davenport', 'VA', 24239, 2768591677, 1539096222812);
 
+INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plate_number) VALUES
+    ('1G1ZB5E18BF215943', 1, 'Ford', 'Focus', 2018, 'Black', 2000, 'JJZ-7865'),
+    ('1FTCR11T1JUD23467', 2, 'Ford', 'Focus', 2018, 'White', 20000, 'HVZ-1234'),
+    ('1FAFP52U83A163390', 1, 'Honda', 'Civic', 2017, 'Silver', 23756, 'VZA-1234'),
+    ('1FDEE14N9MHA80517', 3, 'Honda', 'Fit', 2017, 'White', 12000, 'AZV-5432'),
+    ('3VWPD69M51M113790', 3, 'Honda', 'CR-V', 2018, 'Grey', 2300, 'VHA-2030'),
+    ('1GTEK14H8DJ565795', 4, 'Tesla', 'Model 3', 2018, 'Black', 2300, 'VHA-2030'),
+    ('JW6AJC1H7RL081260', 4, 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015'),
+    ('5TBJN321XYS072757', 4, 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222'),
+    ('1GYS4EEJ0CR116546', 2, 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798'),
+    ('1G1ZB5E18BF215944', 1, 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
+
 INSERT INTO trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate, email_address, vin) VALUES
     (1, '1538532022549', '1534835683484', '1538530934232', '1534835546230', 16.28, 'rodriguezdl@vcu.edu', '1G1ZB5E18BF215943'),
     (2, '1538532022549', '1524423128022', '1538858554165', '1524422619917', 15.19, 'chand3@vcu.edu', '5TBJN321XYS072757'),

@@ -74,20 +74,13 @@ INSERT INTO maintenance(vin, service_type, utc) VALUES
 ('JW6AJC1H7RL081260', 'State Inspection', 1529899200200),
 ('1GYS4EEJ0CR116546', 'Emission', 1529899200100);
 
--- Insert sample data into incident_record
-INSERT INTO incident_record(record_number. type. details, surcharge, waived)
-    VALUES(1, 'Fender Bender', 'Driver involved in fender bender', 1000, 800);
+INSERT INTO incident(record_number, reservation, incident_type, details, surcharge, waived) VALUES
+    (1, 1, 'Fender Bender', 'Driver involved in fender bender', 1000, 800),
+    (2, 6, 'Flat Tire', 'Driver received flat tire', 0, 0),
+    (3, 12, 'Engine Stall', 'Enigne stall occured on fleet vehicle', 0, 0),
+    (4, 11, 'Flat Tire', 'Member incurred flat tire', 0, 0);
 
-INSERT INTO incident_record(record_number. type. details, surcharge, waived)
-    VALUES(2, 'Flat Tire', 'Driver received flat tire', 0, 0);
-
-INSERT INTO incident_record(record_number. type. details, surcharge, waived)
-    VALUES(3, 'Engine Stall', 'Enigne stall occured on fleet vehicle', 0, 0);
-
-INSERT INTO incident_record(record_number. type. details, surcharge, waived)
-    VALUES(4, 'Flat Tire', 'Member incurred flat tire', 0, 0);
-
- -- Insert sample data into role
+ 
 INSERT INTO role(role_id, name, pay_type, emp_type)
     VALUES(0, 'Chief Executive Officer', 1, 1);
 

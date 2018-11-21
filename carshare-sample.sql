@@ -1,11 +1,9 @@
---Insert sample data for parking_lot
 INSERT INTO parking_lot(lot_id, address, city, state, zip_code, capacity) VALUES
     (1, '1109 West Marshall Street', 'Richmond', 'VA', 23220, 3),
     (2, '601 West Bacon Street', 'Richmond', 'VA', 23222, 2),
     (3, '200 West Cary Street', 'Richmond', 'VA', 23220, 4),
     (4, '607 North 10th Street', 'Richmond', 'VA', 23220, 3);
 
--- Insert sample data into account.
 INSERT INTO account(email_address, password_hash, first_name, last_name, address, city, state, zip_code, phone_number, creation_date) VALUES
     ('rodriguezdl@vcu.edu', '$2a$12$0TBPmJfOif1q4m9DFCQPVOzw4xkQsqWNiiF9dIHGH3Wepz34a3R6C', 'Daniel', 'Rodriguez',
         '340 College Avenue', 'Commack', 'NY', 11725, 2025550149, 1538524728801),
@@ -26,42 +24,19 @@ INSERT INTO account(email_address, password_hash, first_name, last_name, address
     ('Jmh@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', 'Hakiziman', 'Jean-Marie',
         '2763 Payne Street', 'Davenport', 'VA', 24239, 2768591677, 1539096222812);
 
--- Insert sample data for TRIP_DETAILS.
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(1, '1538532022549', '1534835683484', '1538530934232', '1534835546230', 16.28);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(2, '1538532022549', '1524423128022', '1538858554165', '1524422619917', 15.19);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(3, '1538859608574', '1512109265089', '1538701327302', '1512109167948', 12.44);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(4, '1538819777779', '1513927712388', '1538818274507', '1513927869320', 15.85);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(5, '1538560793482', '1527040783398', '1538559512577', '1527040580469', 11.34);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(6, '1538717364106', '1526159566185', '1538717257397', '1526160041030', 16.13);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(7, '1531152531024', '1538676489567', '1531151750464', '1538676007905', 17.65);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(8, '1536190468140', '1516540419270', '1536189356476', '1535884123533', 5.32);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(9, '1536190130399', '1535883560576', '1536189356476', '1535884123533', 5.04);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(10, '1523695600656', '1533049031928', '1523693859469', '1533049110829', 9.44);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(11, '1524037596188', '1521307310477', '1524036616624', '1521307776096', 16.66);
-
-INSERT INTO TRIP_DETAILS (reservation, reservationStart, reservationEnd, actualStart, actualEnd, rate)
-    VALUES(12, '1538322920916', '1515020294464', '1538354371429', '1515021161986', 7.95);
+INSERT INTO trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate, email_address, vin) VALUES
+    (1, '1538532022549', '1534835683484', '1538530934232', '1534835546230', 16.28, 'rodriguezdl@vcu.edu', 1),
+    (2, '1538532022549', '1524423128022', '1538858554165', '1524422619917', 15.19, 'chand3@vcu.edu', 2),
+    (3, '1538859608574', '1512109265089', '1538701327302', '1512109167948', 12.44, 'dhinganiv@vcu.edu', 3),
+    (4, '1538819777779', '1513927712388', '1538818274507', '1513927869320', 15.85, 'martinkl@gmail.com', 4),
+    (5, '1538560793482', '1527040783398', '1538559512577', '1527040580469', 11.34, 's2dmduke@vcu.edu', 5),
+    (6, '1538717364106', '1526159566185', '1538717257397', '1526160041030', 16.13, 'plooer@aol.net', 6),
+    (7, '1531152531024', '1538676489567', '1531151750464', '1538676007905', 17.65, 'rodriguezdl@vcu.edu', 7),
+    (8, '1536190468140', '1516540419270', '1536189356476', '1535884123533', 5.32, 'dhinganiv@vcu.edu', 8),
+    (9, '1536190130399', '1535883560576', '1536189356476', '1535884123533', 5.04, 's2dmduke@vcu.edu', 9),
+    (10, '1523695600656', '1533049031928', '1523693859469', '1533049110829', 9.44, 's2dmduke@vcu.edu', 10),
+    (11, '1524037596188', '1521307310477', '1524036616624', '1521307776096', 16.66, 'chand3@vcu.edu', 11),
+    (12, '1538322920916', '1515020294464', '1538354371429', '1515021161986', 7.95, 'plooer@aol.net', 12);
 
 --Insert sample data into vehicle
 INSERT INTO vehicle(vin, lot_d, make, model, year, color, mileage, license_plate_number)

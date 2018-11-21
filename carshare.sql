@@ -31,10 +31,7 @@ CREATE TABLE trip_details (
     vin CHAR(17) NOT NULL,
     FOREIGN KEY (email_address) REFERENCES account(email_address)
         ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (reservation) REFERENCES trip_details(reservation)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
+        ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE vehicle (
@@ -101,12 +98,24 @@ CREATE TABLE role (
     role_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     pay_type ENUM('Salaried', 'Hourly') NOT NULL,
-    employee_type ENUM('Full Time', 'Part Time', 'Intern', 'Contractor') NOT NULL,
+    employee_type ENUM('Full Time', 'Part Time', 'Intern', 'Contractor') NOT NULL
 );
+
+CREATE TABLE employee (
+    email_address VARCHAR(255) PRIMARY KEY,
+    manager_email_address VARCHAR(255) NOT NULL,
+    ssn INT(9) UNSIGNED ZEROFILL NOT NULL,
+    wage DOUBLE(9,2) UNSIGNED NOT NULL,
+    bank_account_number BIGINT UNSIGNED NOT NULL,
+    routing_number BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (manager_email_address) REFERENCES employee(email_address)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE 
+) ENGINE=InnoDB;
 
 CREATE TABLE job_type (
     email_address VARCHAR(255) NOT NULL,
-    role_id INT UNISGNED NOT NULL,
+    role_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (email_address) REFERENCES employee(email_address)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -115,18 +124,8 @@ CREATE TABLE job_type (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
-CREATE TABLE employee (
-    email_address VARCHAR(255) PRIMARY KEY,
-    ssn INT(9) UNSIGNED ZEROFILL NOT NULL,
-    wage DOUBLE(9,2) UNSIGNED NOT NULL,
-    bank_account_number BIGINT UNSIGNED NOT NULL,
-    routing_number BIGINT UNISGNED NOT NULL,
-    FOREIGN KEY (manager_email_address) REFERENCES employee(email_address)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE 
-) ENGINE=InnoDB;
-
 CREATE TABLE feedback(
+    email_address VARCHAR(255) NOT NULL,
     ticket_number INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     subject VARCHAR(255) NOT NULL,
     message TEXT NOT NULL,

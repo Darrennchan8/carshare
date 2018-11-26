@@ -126,6 +126,17 @@ INSERT INTO employee(email_address, manager_email_address, ssn, wage, bank_accou
     ('carsonb@carshare.com', 'rodriguezdl@carshare.com', 458980012, 30, 2739482980, 418401238),
     ('dickson@carshare.com', 'rodriguezdl@carshare.com', 473232012, 30, 4738293801, 442392011);
 
+INSERT INTO job_type(email_address, role_id) VALUES
+    ('chand@carshare.com', 10),
+    ('rodriguezdl@carshare.com', 10),
+    ('dillard@carshare.com', 2),
+    ('diazr@carshare.com', 3),
+    ('adamsk@carshare.com', 7),
+    ('dhinganiv@carshare.com', 4),
+    ('hopeb@carshare.com', 8),
+    ('carsonb@carshare.com', 7),
+    ('dickson@carshare.com', 2);
+
 -- Insert sample data into feedback
 INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)
     VALUES (1, 'Great App', 'This is such a great app!', 1);

@@ -81,99 +81,46 @@ INSERT INTO incident(record_number, reservation, incident_type, details, surchar
     (4, 11, 'Flat Tire', 'Member incurred flat tire', 0, 0);
 
  
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(0, 'Chief Executive Officer', 1, 1);
-
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(1, 'Customer Service Representative', 1, 1);
-
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(2, 'Customer Service Representative', 2, 2);
-
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(3, 'Accountant', 1, 1);
-
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(4, 'Chief Operating Officer', 1, 2);
-
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(5, 'Software Engineer', 2, 4);
-
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(6, 'Software Engineer', 1, 4);
-
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(7, 'Software Engineer', 1, 1);x
-
-INSERT INTO role(role_id, name, pay_type, emp_type)
-    VALUES(8, 'Customer Service Representative', 1, 3);
+INSERT INTO role(role_id, name, pay_type, employee_type) VALUES
+    (0, 'Chief Executive Officer', 1, 1),
+    (1, 'Customer Service Representative', 1, 1),
+    (2, 'Customer Service Representative', 2, 2),
+    (3, 'Accountant', 1, 1),
+    (4, 'Chief Operating Officer', 1, 2),
+    (5, 'Software Engineer', 2, 4),
+    (6, 'Software Engineer', 1, 4),
+    (7, 'Software Engineer', 1, 1),
+    (8, 'Customer Service Representative', 1, 3);
 
  -- Insert sample data into employee
- INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('dillard@carshare.com', 234567890, 7.29, 1234567890, 987654321);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('diazr@carshare.com', 123456789, 25, 2467101214, 354652598);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('adamsk@carshare.com', 246810111, 35, 1798709878, 746538987);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('dhinganiv@carshare.com', 369121518, 25, 4928028990, 214414254);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('chand@carshare.com', 481216789, 15, 8475618479, 539522323);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('rodriguezdl@carshare.com', 093112222, 50, 4127468279, 784792876);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('hopeb@carshare.com', 234980143, 35, 5638478793, 837492923);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('carsonb@carshare.com', 458980012, 30, 2739482980, 418401238);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('dickson@carshare.com', 473232012, 30, 4738293801, 442392011);
+ INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number) VALUES             ('dillard@carshare.com', 234567890, 7.29,   1234567890, 987654321);
+    ('diazr@carshare.com', 123456789, 25, 2467101214, 354652598),
+    ('adamsk@carshare.com', 246810111, 35, 1798709878, 746538987),
+    ('dhinganiv@carshare.com', 369121518, 25, 4928028990, 214414254),
+    ('chand@carshare.com', 481216789, 15, 8475618479, 539522323),
+    ('rodriguezdl@carshare.com', 093112222, 50, 4127468279, 784792876),
+    ('hopeb@carshare.com', 234980143, 35, 5638478793, 837492923),
+    ('carsonb@carshare.com', 458980012, 30, 2739482980, 418401238),
+    ('dickson@carshare.com', 473232012, 30, 4738293801, 442392011);
 
 -- Insert sample data into feedback
-INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)
-    VALUES (1, 'Great App', 'This is such a great app!', 1);
-
-INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)
-    VALUES (2, 'Great Service', 'This service is very convenient!', 2);
-
-INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)
-    VALUES (3, 'Service Improvements', 'App does not indicate whether someone is late with the car', 1);
+INSERT INTO feedback (ticket_number, subject, message, viewed, email_address) VALUES
+    (1, 'Great App', 'This is such a great app!', 1),
+    (2, 'Great Service', 'This service is very convenient!', 2),
+    (3, 'Service Improvements', 'App does not indicate whether someone is late with the car', 1);
 
 -- Insert sample date into client
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num credits) 
-    VALUES ('rodriguezdl@vcu.edu', 58289128, 60114204036205706, , 5);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('chand3@vcu.edu', 'S530-460-97-370', 4556456898789665, 0);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('dhinganiv@vcu.edu', 'Y8955507', 4556114810353812, 0);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('martinkl@gmail.com', 'Y8955507', 4716917753546508, 2);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('s2dmduke@vcu.edu', 'S-530-718-328-529', 526578639753861, 0);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('plooer@aol.net', '12169056', 371586777472001, 1.5);
+INSERT INTO client (email_address, drivers_licens_num, credit_card_num credits) VALUES
+    ('rodriguezdl@vcu.edu', 58289128, 60114204036205706, , 5),
+    ('chand3@vcu.edu', 'S530-460-97-370', 4556456898789665, 0),
+    ('dhinganiv@vcu.edu', 'Y8955507', 4556114810353812, 0),
+    ('martinkl@gmail.com', 'Y8955507', 4716917753546508, 2),
+    ('s2dmduke@vcu.edu', 'S-530-718-328-529', 526578639753861, 0),
+    ('plooer@aol.net', '12169056', 371586777472001, 1.5);
 
 -- Insert sample data into incident
-INSERT INTO incident(record_number, incident_type, details, surcharge, waived)
-    VALUES(1, 1);
-
-INSERT INTO incident(reservation, record_number)
-    VALUES(2, 2);
-
-INSERT INTO incident(reservation, record_number)
-    VALUES(3, 3);
-
-INSERT INTO incident(reserrvatiom, record_number)
-    VALUES(4, 4);
+INSERT INTO incident(record_number, incident_type, details, surcharge, waived) VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4);

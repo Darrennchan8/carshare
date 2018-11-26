@@ -115,7 +115,7 @@ INSERT INTO role(role_id, name, pay_type, emp_type)
 INSERT INTO role(role_id, name, pay_type, emp_type)
     VALUES(8, 'Customer Service Representative', 1, 3);
 
- INSERT INTO employee(email_address, manager_email_address, ssn, wage, bank_account_number, routing_number) VALUES
+INSERT INTO employee(email_address, manager_email_address, ssn, wage, bank_account_number, routing_number) VALUES
     ('chand@carshare.com', NULL, 481216789, 15, 8475618479, 539522323),
     ('rodriguezdl@carshare.com', NULL, 093112222, 50, 4127468279, 784792876),
     ('dillard@carshare.com', 'chand@carshare.com', 234567890, 7.29, 1234567890, 987654321),

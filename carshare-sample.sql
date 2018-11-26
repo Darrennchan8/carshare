@@ -80,7 +80,6 @@ INSERT INTO incident(record_number, reservation, incident_type, details, surchar
     (3, 12, 'Engine Stall', 'Enigne stall occured on fleet vehicle', 0, 0),
     (4, 11, 'Flat Tire', 'Member incurred flat tire', 0, 0);
 
- 
 INSERT INTO role(role_id, name, pay_type, employee_type) VALUES
     (0, 'Chief Executive Officer', 1, 1),
     (1, 'Customer Service Representative', 1, 1),

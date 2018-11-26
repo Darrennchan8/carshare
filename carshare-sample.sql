@@ -80,7 +80,14 @@ INSERT INTO incident(record_number, reservation, incident_type, details, surchar
     (3, 12, 'Engine Stall', 'Enigne stall occured on fleet vehicle', 0, 0),
     (4, 11, 'Flat Tire', 'Member incurred flat tire', 0, 0);
 
- 
+INSERT INTO client(email_address, drivers_license_number, credit_card_number, credits) VALUES
+    ('rodriguezdl@vcu.edu', 58289128, 60114204036205706, 5),
+    ('chand3@vcu.edu', 'S530-460-97-370', 4556456898789665, 0),
+    ('dhinganiv@vcu.edu', 'Y8955507', 4556114810353812, 0),
+    ('martinkl@gmail.com', 'Y8955507', 4716917753546508, 2),
+    ('s2dmduke@vcu.edu', 'S-530-718-328-529', 526578639753861, 0),
+    ('plooer@aol.net', '12169056', 371586777472001, 1.5);
+
 INSERT INTO role(role_id, name, pay_type, emp_type)
     VALUES(0, 'Chief Executive Officer', 1, 1);
 
@@ -145,25 +152,6 @@ INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)
 
 INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)
     VALUES (3, 'Service Improvements', 'App does not indicate whether someone is late with the car', 1);
-
--- Insert sample date into client
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num credits) 
-    VALUES ('rodriguezdl@vcu.edu', 58289128, 60114204036205706, , 5);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('chand3@vcu.edu', 'S530-460-97-370', 4556456898789665, 0);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('dhinganiv@vcu.edu', 'Y8955507', 4556114810353812, 0);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('martinkl@gmail.com', 'Y8955507', 4716917753546508, 2);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('s2dmduke@vcu.edu', 'S-530-718-328-529', 526578639753861, 0);
-
-INSERT INTO client (email_address, drivers_licens_num, credit_card_num, credits) 
-    VALUES ('plooer@aol.net', '12169056', 371586777472001, 1.5);
 
 -- Insert sample data into incident
 INSERT INTO incident(record_number, incident_type, details, surcharge, waived)

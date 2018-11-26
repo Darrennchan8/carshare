@@ -90,7 +90,7 @@ CREATE TABLE incident (
 CREATE TABLE client (
     email_address VARCHAR(255) PRIMARY KEY,
     drivers_license_number VARCHAR(255) NOT NULL,
-    credit_card_number INT(16) UNSIGNED NOT NULL,
+    credit_card_number BIGINT(16) UNSIGNED NOT NULL,
     credits INT DEFAULT 0,
     FOREIGN KEY (email_address) REFERENCES account(email_address)
         ON DELETE CASCADE

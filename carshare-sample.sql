@@ -135,16 +135,3 @@ INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)
 
 INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)
     VALUES (3, 'Service Improvements', 'App does not indicate whether someone is late with the car', 1);
-
--- Insert sample data into incident
-INSERT INTO incident(record_number, incident_type, details, surcharge, waived)
-    VALUES(1, 1);
-
-INSERT INTO incident(reservation, record_number)
-    VALUES(2, 2);
-
-INSERT INTO incident(reservation, record_number)
-    VALUES(3, 3);
-
-INSERT INTO incident(reserrvatiom, record_number)
-    VALUES(4, 4);

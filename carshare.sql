@@ -106,7 +106,7 @@ CREATE TABLE role (
 
 CREATE TABLE employee (
     email_address VARCHAR(255) PRIMARY KEY,
-    manager_email_address VARCHAR(255) NOT NULL,
+    manager_email_address VARCHAR(255) NULL,
     ssn INT(9) UNSIGNED ZEROFILL NOT NULL,
     wage DOUBLE(9,2) UNSIGNED NOT NULL,
     bank_account_number BIGINT UNSIGNED NOT NULL,

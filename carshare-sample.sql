@@ -115,33 +115,16 @@ INSERT INTO role(role_id, name, pay_type, emp_type)
 INSERT INTO role(role_id, name, pay_type, emp_type)
     VALUES(8, 'Customer Service Representative', 1, 3);
 
- -- Insert sample data into employee
- INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('dillard@carshare.com', 234567890, 7.29, 1234567890, 987654321);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('diazr@carshare.com', 123456789, 25, 2467101214, 354652598);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('adamsk@carshare.com', 246810111, 35, 1798709878, 746538987);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('dhinganiv@carshare.com', 369121518, 25, 4928028990, 214414254);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('chand@carshare.com', 481216789, 15, 8475618479, 539522323);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('rodriguezdl@carshare.com', 093112222, 50, 4127468279, 784792876);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('hopeb@carshare.com', 234980143, 35, 5638478793, 837492923);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('carsonb@carshare.com', 458980012, 30, 2739482980, 418401238);
-
-INSERT INTO employee (email_address, ssn, wage, bank_account_number, routing_number)
-    VALUES ('dickson@carshare.com', 473232012, 30, 4738293801, 442392011);
+ INSERT INTO employee(email_address, manager_email_address, ssn, wage, bank_account_number, routing_number) VALUES
+    ('chand@carshare.com', NULL, 481216789, 15, 8475618479, 539522323),
+    ('rodriguezdl@carshare.com', NULL, 093112222, 50, 4127468279, 784792876),
+    ('dillard@carshare.com', 'chand@carshare.com', 234567890, 7.29, 1234567890, 987654321),
+    ('diazr@carshare.com', 'chand@carshare.com', 123456789, 25, 2467101214, 354652598),
+    ('adamsk@carshare.com', 'chand@carshare.com', 246810111, 35, 1798709878, 746538987),
+    ('dhinganiv@carshare.com', 'chand@carshare.com', 369121518, 25, 4928028990, 214414254),
+    ('hopeb@carshare.com', 'rodriguezdl@carshare.com', 234980143, 35, 5638478793, 837492923),
+    ('carsonb@carshare.com', 'rodriguezdl@carshare.com', 458980012, 30, 2739482980, 418401238),
+    ('dickson@carshare.com', 'rodriguezdl@carshare.com', 473232012, 30, 4738293801, 442392011);
 
 -- Insert sample data into feedback
 INSERT INTO feedback (ticket_number, subject, message, viewed, email_address)

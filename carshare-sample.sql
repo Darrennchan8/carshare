@@ -121,7 +121,7 @@ INSERT INTO job_type(email_address, role_id) VALUES
     ('carsonb@carshare.com', 8),
     ('dickson@carshare.com', 3);
 
-INSERT INTO feedback (ticket_number, subject, message, viewed, email_address) VALUES
-    (1, 'Great App', 'This is such a great app!', 1),
-    (2, 'Great Service', 'This service is very convenient!', 2),
-    (3, 'Service Improvements', 'App does not indicate whether someone is late with the car', 1);
+INSERT INTO feedback(email_address, ticket_number, subject, message, viewed) VALUES
+    ('rodriguezdl@vcu.edu', 1, 'Great App', 'This is such a great app!', TRUE),
+    ('chand3@vcu.edu', 2, 'Great Service', 'This service is very convenient!', TRUE),
+    ('dhinganiv@vcu.edu', 3, 'Service Improvements', 'App does not indicate whether someone is late with the car', FALSE);

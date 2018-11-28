@@ -52,7 +52,6 @@ router.get('/login', async (req, res) => {
   }
   const expected = (await query('SELECT * FROM account WHERE email_address=?', email))[0] || {};
   const actualHash = await bcrypt.hash(password, expected.salt || '');
-  console.log(expected, actualHash);
   if (expected && expected.password_hash == actualHash) {
     res.json({
       success: true

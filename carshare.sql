@@ -10,6 +10,7 @@ CREATE TABLE parking_lot (
 CREATE TABLE account (
     email_address VARCHAR(255) PRIMARY KEY,
     password_hash VARCHAR(255) NOT NULL,
+    salt CHAR(29) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
@@ -17,7 +18,7 @@ CREATE TABLE account (
     state CHAR(2) NOT NULL,
     zip_code INT(5) UNSIGNED ZEROFILL NOT NULL,
     phone_number BIGINT(10) UNSIGNED ZEROFILL NOT NULL,
-    creation_date BIGINT UNSIGNED NOT NULL
+    creation_date BIGINT UNSIGNED NOT NULL 
 ) ENGINE=InnoDB;
 
 CREATE TABLE vehicle (

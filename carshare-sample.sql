@@ -4,24 +4,24 @@ INSERT INTO parking_lot(lot_id, address, city, state, zip_code, capacity) VALUES
     (3, '200 West Cary Street', 'Richmond', 'VA', 23220, 4),
     (4, '607 North 10th Street', 'Richmond', 'VA', 23220, 3);
 
-INSERT INTO account(email_address, password_hash, first_name, last_name, address, city, state, zip_code, phone_number, creation_date) VALUES
-    ('rodriguezdl@vcu.edu', '$2a$12$0TBPmJfOif1q4m9DFCQPVOzw4xkQsqWNiiF9dIHGH3Wepz34a3R6C', 'Daniel', 'Rodriguez',
+INSERT INTO account(email_address, password_hash, salt, first_name, last_name, address, city, state, zip_code, phone_number, creation_date) VALUES
+    ('rodriguezdl@vcu.edu', '$2a$12$0TBPmJfOif1q4m9DFCQPVOzw4xkQsqWNiiF9dIHGH3Wepz34a3R6C', '$2b$16$WV9K8/YenLXnJhb09/Ekau', 'Daniel', 'Rodriguez',
         '340 College Avenue', 'Commack', 'NY', 11725, 2025550149, 1538524728801),
-    ('chand3@vcu.edu', '$2a$12$PSkGhrXH24plG5lUoWTKAOFLmOXU85TM8.SKqgW1LDZGZSCmTQBdi', 'Darren', 'Chan',
+    ('chand3@vcu.edu', '$2a$12$PSkGhrXH24plG5lUoWTKAOFLmOXU85TM8.SKqgW1LDZGZSCmTQBdi', '$2b$16$I0/Ng8VrbF79MvTvhkL4x.' 'Darren', 'Chan',
         '8135 Sutor Drive ', 'Northville', 'MI', 48167, 2127378040, 1538963776422),
-    ('dhinganiv@vcu.edu', '$2a$12$XljWZ8UuEJ70k2D1NWbRRu1YKmKFoDU00dErWRJIEfJ.VEEO2ulTS', 'Vasu', 'Dhingani',
+    ('dhinganiv@vcu.edu', '$2a$12$XljWZ8UuEJ70k2D1NWbRRu1YKmKFoDU00dErWRJIEfJ.VEEO2ulTS', '$2b$16$cxDxRy5qpWGSUsTKIs8Wru', 'Vasu', 'Dhingani',
         '81 Pilgrim Ave.', 'Chester', 'PA', 19013, 4064287501, 1538864010510),
-    ('martinkl@gmail.com', '$2a$12$Jk3mzqgNTR9S/D4giGs5wOZKaXcK3KD0X/mRsrxuHNKlxQPlTOKc6', 'King', 'Martin',
+    ('martinkl@gmail.com', '$2a$12$Jk3mzqgNTR9S/D4giGs5wOZKaXcK3KD0X/mRsrxuHNKlxQPlTOKc6', '$2b$16$ZN4aoNTN8WeyTXOp49F16O', 'King', 'Martin',
         '31 South Street', 'New Albany', 'IN', 471250, 5054610705, 1538998002062),
-    ('s2dmduke@vcu.edu', '$2a$12$hflgY5ItHNV86skL1srfuOsnEHiNl496wkkKakCx1P2LDgCBDEYem', 'Debra', 'Duke',
+    ('s2dmduke@vcu.edu', '$2a$12$hflgY5ItHNV86skL1srfuOsnEHiNl496wkkKakCx1P2LDgCBDEYem', '$2b$16$d5F7PRJT8PxamowX3zDK3.', 'Debra', 'Duke',
         '506 East Armstrong Avenue', 'Plymouth', 'MA', 02360, 2059678509, 1538567650524),
-    ('plooer@aol.net', '$2a$12$Vk7AD572qOvOl/sENgJBVegf6v8tFcwbKfYYRYjfaV/KFJ1HgZJHq', 'Darren', 'Chan',
+    ('plooer@aol.net', '$2a$12$Vk7AD572qOvOl/sENgJBVegf6v8tFcwbKfYYRYjfaV/KFJ1HgZJHq', '$2b$16$goOLGHiN.Ar6gHp.iUoLGe', 'Darren', 'Chan',
         '8135 Sutor Drive ', 'Northville', 'MI', 48167, 2127378040, 1538963776422),
-    ('chand3@mymail.vcu.edu', '$2a$12$PSkGhrXH24plG5lUoWTKAOFLmOXU85TM8.SKqgW1LDZGZSCmTQBdi', 'Ere', 'Ploo',
+    ('chand3@mymail.vcu.edu', '$2a$12$PSkGhrXH24plG5lUoWTKAOFLmOXU85TM8.SKqgW1LDZGZSCmTQBdi', '$2b$16$goOLGHiN.Ar6gHp.iUoLGe', 'Ere', 'Ploo',
         '160 8th St.', 'Caldwell', 'NJ', 07006, 2028216794, 1539049922050),
-    ('Patelviyat@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', 'Viyat', 'Patel',
+    ('Patelviyat@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', '$2b$16$dfnVX46tykRBH7/3nHyNJ.', 'Viyat', 'Patel',
         '4820 Spring Street ', 'Effingham', 'IL', 62401, 8898790930, 1539117108806),
-    ('Jmh@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', 'Hakiziman', 'Jean-Marie',
+    ('Jmh@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', '$2b$16$pTPAQeZLJu8vqLad6LTD6O', 'Hakizimana', 'Jean-Marie',
         '2763 Payne Street', 'Davenport', 'VA', 24239, 2768591677, 1539096222812);
 
 INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plate_number) VALUES

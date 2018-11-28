@@ -1,0 +1,13 @@
+{
+  "name": "carshare-api",
+  "version": "1.0.0",
+  "description": "RESTful endpoint for carshare",
+  "main": "server.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}

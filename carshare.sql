@@ -103,7 +103,7 @@ CREATE TABLE role (
     name VARCHAR(255) NOT NULL,
     pay_type ENUM('Salaried', 'Hourly') NOT NULL,
     employee_type ENUM('Full Time', 'Part Time', 'Intern', 'Contractor') NOT NULL
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE employee (
     email_address VARCHAR(255) PRIMARY KEY,

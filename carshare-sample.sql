@@ -8,7 +8,7 @@ INSERT INTO account(email_address, password_hash, salt, first_name, last_name, a
     ('rodriguezdl@vcu.edu', '$2a$12$0TBPmJfOif1q4m9DFCQPVOzw4xkQsqWNiiF9dIHGH3Wepz34a3R6C', '$2b$16$WV9K8/YenLXnJhb09/Ekau', 'Daniel', 'Rodriguez',
         '340 College Avenue', 'Commack', 'NY', 11725, 2025550149, 1538524728801),
     ('chand3@vcu.edu', '$2a$12$PSkGhrXH24plG5lUoWTKAOFLmOXU85TM8.SKqgW1LDZGZSCmTQBdi', '$2b$16$I0/Ng8VrbF79MvTvhkL4x.' 'Darren', 'Chan',
-        '8135 Sutor Drive ', 'Northville', 'MI', 48167, 2127378040, 1538963776422),
+        '8135 Sutor Drive', 'Northville', 'MI', 48167, 2127378040, 1538963776422),
     ('dhinganiv@vcu.edu', '$2a$12$XljWZ8UuEJ70k2D1NWbRRu1YKmKFoDU00dErWRJIEfJ.VEEO2ulTS', '$2b$16$cxDxRy5qpWGSUsTKIs8Wru', 'Vasu', 'Dhingani',
         '81 Pilgrim Ave.', 'Chester', 'PA', 19013, 4064287501, 1538864010510),
     ('martinkl@gmail.com', '$2a$12$Jk3mzqgNTR9S/D4giGs5wOZKaXcK3KD0X/mRsrxuHNKlxQPlTOKc6', '$2b$16$ZN4aoNTN8WeyTXOp49F16O', 'King', 'Martin',
@@ -16,11 +16,11 @@ INSERT INTO account(email_address, password_hash, salt, first_name, last_name, a
     ('s2dmduke@vcu.edu', '$2a$12$hflgY5ItHNV86skL1srfuOsnEHiNl496wkkKakCx1P2LDgCBDEYem', '$2b$16$d5F7PRJT8PxamowX3zDK3.', 'Debra', 'Duke',
         '506 East Armstrong Avenue', 'Plymouth', 'MA', 02360, 2059678509, 1538567650524),
     ('plooer@aol.net', '$2a$12$Vk7AD572qOvOl/sENgJBVegf6v8tFcwbKfYYRYjfaV/KFJ1HgZJHq', '$2b$16$goOLGHiN.Ar6gHp.iUoLGe', 'Darren', 'Chan',
-        '8135 Sutor Drive ', 'Northville', 'MI', 48167, 2127378040, 1538963776422),
+        '8135 Sutor Drive', 'Northville', 'MI', 48167, 2127378040, 1538963776422),
     ('chand3@mymail.vcu.edu', '$2a$12$PSkGhrXH24plG5lUoWTKAOFLmOXU85TM8.SKqgW1LDZGZSCmTQBdi', '$2b$16$goOLGHiN.Ar6gHp.iUoLGe', 'Ere', 'Ploo',
         '160 8th St.', 'Caldwell', 'NJ', 07006, 2028216794, 1539049922050),
     ('Patelviyat@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', '$2b$16$dfnVX46tykRBH7/3nHyNJ.', 'Viyat', 'Patel',
-        '4820 Spring Street ', 'Effingham', 'IL', 62401, 8898790930, 1539117108806),
+        '4820 Spring Street', 'Effingham', 'IL', 62401, 8898790930, 1539117108806),
     ('Jmh@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', '$2b$16$pTPAQeZLJu8vqLad6LTD6O', 'Hakizimana', 'Jean-Marie',
         '2763 Payne Street', 'Davenport', 'VA', 24239, 2768591677, 1539096222812);
 

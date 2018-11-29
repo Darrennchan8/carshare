@@ -78,7 +78,7 @@ router.post('/logout', async (req, res) => {
 
 router.post('/debug', async (req, res) => {
   res.json({
-    session
+    session: req.session
   });
 });
 

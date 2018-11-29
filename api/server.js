@@ -48,14 +48,26 @@ const query = function(str, ...params) {
   });
 };
 
+const assertSchema = function(actual, expected) {
+  for (const [key, value] of Object.entries(expected)) {
+    if (actual[key] === null || typeof actual[key] != value) {
+      return false;
+    }
+  }
+  return true;
+};
+
 router.post('/login', async (req, res) => {
-  const [email, password] = [req.body.email.toLowerCase(), req.body.password];
-  if (!email || !password) {
+  if (!assertSchema(req.body, {
+        email: 'string',
+        password: 'string'
+      })) {
     res.status(400).send('Bad Request');
     return;
   }
+  const { email, password } = req.body;
   const expected = (await query('SELECT * FROM account WHERE email_address=?', email))[0] || {};
-  const actualHash = await bcrypt.hash(password, expected.salt || '');
+  const actualHash = await bcrypt.hash(password, expected.salt || bcrypt.genSaltSync(1));
   if (expected && expected.password_hash == actualHash) {
     req.session.identity = email;
     res.json({

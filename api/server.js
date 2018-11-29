@@ -69,5 +69,18 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.post('/logout', async (req, res) => {
+  req.session.identity = null;
+  res.json({
+    success: true
+  });
+});
+
+router.post('/debug', async (req, res) => {
+  res.json({
+    session
+  });
+});
+
 app.listen(port);
 console.log(`Running on port ${port}.`);

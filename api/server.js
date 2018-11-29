@@ -14,8 +14,6 @@ app.use(session({
   }
 }));
 
-const sessionIds = {};
-
 const port = process.env.port || 8080;
 
 const router = express.Router();
@@ -59,8 +57,7 @@ router.post('/login', async (req, res) => {
   const expected = (await query('SELECT * FROM account WHERE email_address=?', email))[0] || {};
   const actualHash = await bcrypt.hash(password, expected.salt || '');
   if (expected && expected.password_hash == actualHash) {
-    req.session.sid = bcrypt.genSaltSync(1);
-    sessionIds[req.session.sid] = email;
+    req.session.identity = email;
     res.json({
       success: true
     });

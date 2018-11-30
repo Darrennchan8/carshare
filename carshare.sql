@@ -7,20 +7,6 @@ CREATE TABLE parking_lot (
     capacity INT UNSIGNED NOT NULL
 ) ENGINE=InnoDB;
 
-CREATE TABLE account (
-    email_address VARCHAR(255) PRIMARY KEY,
-    password_hash VARCHAR(255) NOT NULL,
-    salt CHAR(29) NOT NULL,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
-    city VARCHAR(255) NOT NULL,
-    state CHAR(2) NOT NULL,
-    zip_code INT(5) UNSIGNED ZEROFILL NOT NULL,
-    phone_number BIGINT(10) UNSIGNED ZEROFILL NOT NULL,
-    creation_date BIGINT UNSIGNED NOT NULL 
-) ENGINE=InnoDB;
-
 CREATE TABLE vehicle (
     vin CHAR(17) PRIMARY KEY,
     lot_id INT UNSIGNED NOT NULL,
@@ -35,6 +21,30 @@ CREATE TABLE vehicle (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE account (
+    email_address VARCHAR(255) PRIMARY KEY,
+    password_hash VARCHAR(255) NOT NULL,
+    salt CHAR(29) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state CHAR(2) NOT NULL,
+    zip_code INT(5) UNSIGNED ZEROFILL NOT NULL,
+    phone_number BIGINT(10) UNSIGNED ZEROFILL NOT NULL,
+    creation_date BIGINT UNSIGNED NOT NULL 
+) ENGINE=InnoDB;
+
+CREATE TABLE client (
+    email_address VARCHAR(255) PRIMARY KEY,
+    drivers_license_number VARCHAR(255) NOT NULL,
+    credit_card_number BIGINT(16) UNSIGNED NOT NULL,
+    credits INT DEFAULT 0,
+    FOREIGN KEY (email_address) REFERENCES account(email_address)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
 CREATE TABLE trip_details (
     reservation INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     reservation_start BIGINT UNSIGNED NOT NULL,
@@ -44,7 +54,7 @@ CREATE TABLE trip_details (
     rate DOUBLE(5, 2) UNSIGNED NOT NULL,
     email_address VARCHAR(255) NOT NULL,
     vin CHAR(17) NOT NULL,
-    FOREIGN KEY (email_address) REFERENCES account(email_address)
+    FOREIGN KEY (email_address) REFERENCES client(email_address)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     FOREIGN KEY (vin) REFERENCES vehicle(vin)
@@ -86,16 +96,6 @@ CREATE TABLE incident (
     FOREIGN KEY (reservation) REFERENCES trip_details(reservation)
         ON DELETE RESTRICT
         ON UPDATE RESTRICT
-) ENGINE=InnoDB;
-
-CREATE TABLE client (
-    email_address VARCHAR(255) PRIMARY KEY,
-    drivers_license_number VARCHAR(255) NOT NULL,
-    credit_card_number BIGINT(16) UNSIGNED NOT NULL,
-    credits INT DEFAULT 0,
-    FOREIGN KEY (email_address) REFERENCES account(email_address)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
 CREATE TABLE role (

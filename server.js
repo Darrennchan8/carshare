@@ -151,7 +151,7 @@ router.post('/logout', async (req, res) => {
   });
 });
 
-router.post('/debug', async (req, res) => {
+router.all('/debug', async (req, res) => {
   res.json({
     session: req.session
   });

@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const path = require('path');
+
+const port = process.env.port || 8080;
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -14,12 +17,11 @@ app.use(session({
   }
 }));
 
-const port = process.env.port || 8080;
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
 
 const router = express.Router();
-
-router.get('/', (req, res) => res.send('ok'));
-
 app.use('/api', router);
 
 const db = mysql.createConnection({
@@ -29,10 +31,20 @@ const db = mysql.createConnection({
   database: 'carshare'
 });
 
-db.connect(err =>
-    err ?
-        console.error('Unable to connect to database', err) :
-        console.log('Connected to mysql!'));
+const initDB = function() {
+  return new Promise((resolve, reject) => {
+    db.connect(err => {
+      if (err) {
+        console.log('Connected to mysql!');
+        resolve();
+      } else {
+        console.error('Unable to connect to database.', err);
+        console.error('Retrying in 5s.');
+        setTimeout(() => initDB().then(resolve), 5000);
+      }
+    });
+  });
+};
 
 const query = function(str, ...params) {
   return new Promise((resolve, reject) => {
@@ -145,5 +157,8 @@ router.post('/debug', async (req, res) => {
   });
 });
 
-app.listen(port);
-console.log(`Running on port ${port}.`);
+console.log('Waiting for database...');
+initDB().then(() => {
+  app.listen(port);
+  console.log(`Running on port ${port}.`);
+});

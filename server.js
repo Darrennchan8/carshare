@@ -18,7 +18,7 @@ app.use(session({
 }));
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/../frontend/index.html'));
+  res.sendFile(path.join(__dirname + '/frontend/index.html'));
 });
 
 const router = express.Router();

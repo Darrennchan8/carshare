@@ -4,6 +4,18 @@ INSERT INTO parking_lot(lot_id, address, city, state, zip_code, capacity) VALUES
     (3, '200 West Cary Street', 'Richmond', 'VA', 23220, 4),
     (4, '607 North 10th Street', 'Richmond', 'VA', 23220, 3);
 
+INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plate_number) VALUES
+    ('1G1ZB5E18BF215943', 1, 'Ford', 'Focus', 2018, 'Black', 2000, 'JJZ-7865'),
+    ('1FTCR11T1JUD23467', 2, 'Ford', 'Focus', 2018, 'White', 20000, 'HVZ-1234'),
+    ('1FAFP52U83A163390', 1, 'Honda', 'Civic', 2017, 'Silver', 23756, 'VZA-1234'),
+    ('1FDEE14N9MHA80517', 3, 'Honda', 'Fit', 2017, 'White', 12000, 'AZV-5432'),
+    ('3VWPD69M51M113790', 3, 'Honda', 'CR-V', 2018, 'Grey', 2300, 'VHA-2030'),
+    ('1GTEK14H8DJ565795', 4, 'Tesla', 'Model 3', 2018, 'Black', 2300, 'VHA-2030'),
+    ('JW6AJC1H7RL081260', 4, 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015'),
+    ('5TBJN321XYS072757', 4, 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222'),
+    ('1GYS4EEJ0CR116546', 2, 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798'),
+    ('1D4SE5GT7BC646986', 1, 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
+
 INSERT INTO account(email_address, password_hash, salt, first_name, last_name, address, city, state, zip_code, phone_number, creation_date) VALUES
     ('rodriguezdl@vcu.edu', '$2a$12$0TBPmJfOif1q4m9DFCQPVOzw4xkQsqWNiiF9dIHGH3Wepz34a3R6C', '$2b$16$WV9K8/YenLXnJhb09/Ekau', 'Daniel', 'Rodriguez',
         '340 College Avenue', 'Commack', 'NY', 11725, 2025550149, 1538524728801),
@@ -24,17 +36,13 @@ INSERT INTO account(email_address, password_hash, salt, first_name, last_name, a
     ('Jmh@gmail.com', '$2y$12$Z46FuqPRt.nm7S3NY.BzMO.NQh/sINCO.SQUHw7tXVg.zVE9QLMo.', '$2b$16$pTPAQeZLJu8vqLad6LTD6O', 'Hakizimana', 'Jean-Marie',
         '2763 Payne Street', 'Davenport', 'VA', 24239, 2768591677, 1539096222812);
 
-INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plate_number) VALUES
-    ('1G1ZB5E18BF215943', 1, 'Ford', 'Focus', 2018, 'Black', 2000, 'JJZ-7865'),
-    ('1FTCR11T1JUD23467', 2, 'Ford', 'Focus', 2018, 'White', 20000, 'HVZ-1234'),
-    ('1FAFP52U83A163390', 1, 'Honda', 'Civic', 2017, 'Silver', 23756, 'VZA-1234'),
-    ('1FDEE14N9MHA80517', 3, 'Honda', 'Fit', 2017, 'White', 12000, 'AZV-5432'),
-    ('3VWPD69M51M113790', 3, 'Honda', 'CR-V', 2018, 'Grey', 2300, 'VHA-2030'),
-    ('1GTEK14H8DJ565795', 4, 'Tesla', 'Model 3', 2018, 'Black', 2300, 'VHA-2030'),
-    ('JW6AJC1H7RL081260', 4, 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015'),
-    ('5TBJN321XYS072757', 4, 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222'),
-    ('1GYS4EEJ0CR116546', 2, 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798'),
-    ('1D4SE5GT7BC646986', 1, 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
+INSERT INTO client(email_address, drivers_license_number, credit_card_number, credits) VALUES
+    ('rodriguezdl@vcu.edu', '58289128', 60114204036205706, 5),
+    ('chand3@vcu.edu', 'S530-460-97-370', 4556456898789665, 0),
+    ('dhinganiv@vcu.edu', 'Y8955507', 4556114810353812, 0),
+    ('martinkl@gmail.com', 'Y8955507', 4716917753546508, 2),
+    ('s2dmduke@vcu.edu', 'S-530-718-328-529', 526578639753861, 0),
+    ('plooer@aol.net', '12169056', 371586777472001, 1.5);
 
 INSERT INTO trip_details(reservation, reservation_start, reservation_end, actual_start, actual_end, rate, email_address, vin) VALUES
     (1, '1538532022549', '1534835683484', '1538530934232', '1534835546230', 16.28, 'rodriguezdl@vcu.edu', '1G1ZB5E18BF215943'),
@@ -79,14 +87,6 @@ INSERT INTO incident(record_number, reservation, incident_type, details, surchar
     (2, 6, 'Flat Tire', 'Driver received flat tire', 0, 0),
     (3, 12, 'Engine Stall', 'Enigne stall occured on fleet vehicle', 0, 0),
     (4, 11, 'Flat Tire', 'Member incurred flat tire', 0, 0);
-
-INSERT INTO client(email_address, drivers_license_number, credit_card_number, credits) VALUES
-    ('rodriguezdl@vcu.edu', '58289128', 60114204036205706, 5),
-    ('chand3@vcu.edu', 'S530-460-97-370', 4556456898789665, 0),
-    ('dhinganiv@vcu.edu', 'Y8955507', 4556114810353812, 0),
-    ('martinkl@gmail.com', 'Y8955507', 4716917753546508, 2),
-    ('s2dmduke@vcu.edu', 'S-530-718-328-529', 526578639753861, 0),
-    ('plooer@aol.net', '12169056', 371586777472001, 1.5);
 
 INSERT INTO role(role_id, name, pay_type, employee_type) VALUES
     (1, 'Chief Executive Officer', 1, 1),

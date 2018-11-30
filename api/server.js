@@ -18,7 +18,7 @@ app.use(session({
 }));
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname + '/../frontend/index.html'));
 });
 
 const router = express.Router();
@@ -35,12 +35,12 @@ const initDB = function() {
   return new Promise((resolve, reject) => {
     db.connect(err => {
       if (err) {
-        console.log('Connected to mysql!');
-        resolve();
-      } else {
         console.error('Unable to connect to database.', err);
         console.error('Retrying in 5s.');
         setTimeout(() => initDB().then(resolve), 5000);
+      } else {
+        console.log('Connected to mysql!');
+        resolve();
       }
     });
   });

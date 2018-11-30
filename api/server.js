@@ -38,19 +38,24 @@ const query = function(str, ...params) {
   return new Promise((resolve, reject) => {
     db.query(str, params, (error, results, fields) => {
       if (error) {
+        reject(error);
         console.error({
           invocation: [str, ...params],
           error
         });
+      } else {
+        resolve(results);
       }
-      resolve(results);
     });
   });
 };
 
 const assertSchema = function(actual, expected) {
   for (const [key, value] of Object.entries(expected)) {
-    if (actual[key] === null || typeof actual[key] != value) {
+    if (actual[key] === null || typeof value == 'string' && typeof actual[key] != value) {
+      return false;
+    }
+    if (typeof value == 'object' && !assertSchema(actual[key], value)) {
       return false;
     }
   }
@@ -70,10 +75,12 @@ router.post('/login', async (req, res) => {
   const actualHash = await bcrypt.hash(password, expected.salt || bcrypt.genSaltSync(1));
   if (expected && expected.password_hash == actualHash) {
     req.session.identity = email;
+    console.log(`${email} successfully logged in.`);
     res.json({
       success: true
     });
   } else {
+    console.log(`${email} unsuccessfully attempted login.`);
     res.json({
       success: false,
       message: 'Incorrect email or password.'
@@ -81,7 +88,51 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.post('/register', async (req, res) => {
+  if (!assertSchema(req.body, {
+    email: 'string',
+    password: 'string',
+    name: {
+      first: 'string',
+      last: 'string'
+    },
+    address: {
+      address: 'string',
+      city: 'string',
+      state: 'string',
+      zip: 'string'
+    },
+    phone: 'string'
+  })) {
+    res.status(400).send('Bad Request');
+  }
+  const {
+    email,
+    password,
+    name: { first: firstName, last: lastName },
+    address: { address, city, state, zip },
+    phone
+  } = req.body;
+  try {
+    const salt = await bcrypt.genSalt(1);
+    const passwordHash = await bcrypt.hash(password, salt);
+    await query(`INSERT INTO
+      account(email_address, password_hash, salt, first_name, last_name, address, city, state, zip_code, phone_number, creation_date)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+      email, passwordHash, salt, firstName, lastName, address, city, state, +zip, +phone, Date.now());
+    console.log(`Created account ${email}.`);
+    req.session.identity = email;
+    res.send({
+      success: true
+    });
+  } catch (err) {
+    console.error(`Error while creating account.`, req.body, err);
+    res.status(500).send('Server Error');
+  }
+});
+
 router.post('/logout', async (req, res) => {
+  req.session.identity && console.log(`${req.session.identity} logged out.`);
   req.session.identity = null;
   res.json({
     success: true

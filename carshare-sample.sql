@@ -81,7 +81,7 @@ INSERT INTO incident(record_number, reservation, incident_type, details, surchar
     (4, 11, 'Flat Tire', 'Member incurred flat tire', 0, 0);
 
 INSERT INTO client(email_address, drivers_licens_num, credit_card_num, credits) VALUES
-    ('rodriguezdl@vcu.edu', 58289128, 60114204036205706, 5),
+    ('rodriguezdl@vcu.edu', '58289128', 60114204036205706, 5),
     ('chand3@vcu.edu', 'S530-460-97-370', 4556456898789665, 0),
     ('dhinganiv@vcu.edu', 'Y8955507', 4556114810353812, 0),
     ('martinkl@gmail.com', 'Y8955507', 4716917753546508, 2),

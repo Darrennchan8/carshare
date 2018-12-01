@@ -17,9 +17,7 @@ app.use(session({
   }
 }));
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/frontend/index.html'));
-});
+app.use('/', express.static('frontend'));
 
 const router = express.Router();
 app.use('/api', router);

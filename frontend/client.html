@@ -6,38 +6,87 @@
         <link rel="stylesheet" type="text/css" href="client.css">
 </head>
 <body>
-
+    
     <ul class="nav">
         
     <div class="logo">
         CARSHARE
         </div>
 
-        <li><a href="#" id="makeRes">Make Reservation</a></li>        
         <li><a href="#" id="home">Home</a></li>
-        <li><a href="#" id="support">Support</a></li>
         <li><a href="#" id="logout">Log Out</a></li>      
     </ul>
-<div class='client'>
+
+<div id="reservation-container">
+    <div id="lot-container">
+    </div>
+    <div id="car-container" style="display: none;">
+    </div>
+   <div id="time-container" style="display: none;">
+</div>
+</div>
+
     
     <div id="avatar"></div>
     <script>
         (function(){
-            const logout=document.querySelector('#logout');
-            logout.addEventListener('click', function(e){
-            fetch('/api/logout', {
-                method:'POST',
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8"
+            const logout = document.querySelector('#logout');
+            const lotContainer = document.querySelector('#lot-container');
+            const carContainer = document.querySelector('#car-container');
+            const makeLot = function(lot) {
+                const lotRoot = document.createElement('div');
+                const address = document.createElement('span');
+                const cars = document.createElement('span');
+                address.innerText = lot.address;
+                cars.innerText = `${lot.vehicles.length} Cars`;
+                lotRoot.appendChild(address);
+                lotRoot.appendChild(document.createElement('br'));
+                lotRoot.appendChild(cars);
+                lotRoot.addEventListener('click', e => {
+                    carContainer.style.display = null;
+                    while (carContainer.children.length) {
+                        carContainer.removeChild(carContainer.children[0])
+                    }
+                    for (const car of lot.vehicles) {
+                        carContainer.appendChild(makeCar(car));
+                    }
+                });
+                return lotRoot;
+            };
+            const makeCar = function(car) {
+                const carRoot = document.createElement('div');
+                const colorYearMakeModel = document.createElement('span');
+                const rate = document.createElement('span');
+                colorYearMakeModel.innerText = car.color + ' ' + car.year + ' ' + car.make + ' ' + car.model;
+                rate.innerText = `Rate: $${car.rate.toPrecision(2)}`;
+                carRoot.appendChild(colorYearMakeModel);
+                carRoot.appendChild(document.createElement('br'));
+                carRoot.appendChild(rate);
+                return carRoot;
+            };
+            logout.addEventListener('click', function(e) {
+                fetch('/api/logout', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
                     },
                     credentials: 'same-origin'
+                })
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response);
+                    location.href='index.html';
+                });
+            });
+            fetch('/api/reservation', {
+                credentials: 'same-origin'
             })
-            .then(response=>response.json())
-            .then(response=> {
-                console.log(response);
-                location.href='index.html';
-            });   
-        })
+            .then(response => response.json())
+            .then(response => {
+                for (const lot of response) {
+                    lotContainer.appendChild(makeLot(lot));
+                }
+            });
     })();
     </script>
 </body>

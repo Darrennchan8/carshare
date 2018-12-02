@@ -10,8 +10,8 @@ body {
     list-style: none;
     text-align: right;
     padding: 20px 0 20px 0;
-    box-shadow: 0 35px 35px 0x rgba(0,0,0,0.5)
-    
+    box-shadow: 0 35px 35px 0x rgba(0,0,0,0.5);
+    margin-bottom: 0;
 }
 
 .nav > li {
@@ -38,3 +38,21 @@ body {
     float: left;
 }
 
+#reservation-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#lot-container, #car-container {
+   display: flex;
+   flex-direction: column;
+   border-right: 1px solid black;
+}
+
+#lot-container > div, #car-container > div {
+    border-bottom: 1px solid black;
+    padding: 16px;
+    background-color: #BDBDBD;
+    cursor: pointer;
+}

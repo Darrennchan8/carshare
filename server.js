@@ -65,11 +65,33 @@ const assertSchema = function(actual, expected) {
     if (actual[key] === null || typeof value == 'string' && typeof actual[key] != value) {
       return false;
     }
-    if (typeof value == 'object' && !assertSchema(actual[key], value)) {
+    if (typeof value == 'object' && (typeof actual[key] != 'object' || !assertSchema(actual[key], value))) {
       return false;
     }
   }
   return true;
+};
+
+const accountExists = async function(email) {
+  const records = await query('SELECT * FROM account WHERE email_address=?', email);
+  return !!records.length;
+};
+
+const isEmployee = async function(email) {
+  const records = await query('SELECT * FROM employee WHERE email_address=?', email);
+  return !!records.length;
+};
+
+const isClient = async function(email) {
+  const records = await query('SELECT * FROM client WHERE email_address=?', email);
+  return !!records.length;
+};
+
+const getAccountRoles = async function(email) {
+  return {
+    isEmployee: await isEmployee(email),
+    isClient: await isClient(email)
+  };
 };
 
 router.post('/login', async (req, res) => {
@@ -88,7 +110,8 @@ router.post('/login', async (req, res) => {
     req.session.identity = email;
     console.log(`${email} successfully logged in.`);
     res.json({
-      success: true
+      success: true,
+      ...(await getAccountRoles(email))
     });
   } else {
     console.log(`${email} unsuccessfully attempted login.`);
@@ -97,6 +120,17 @@ router.post('/login', async (req, res) => {
       message: 'Incorrect email or password.'
     });
   }
+});
+
+router.post('/accountDetails', async (req, res) => {
+  if (!req.session.identity) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  res.json({
+    success: true,
+    ...(await getAccountRoles(req.session.identity))
+  });
 });
 
 router.post('/register', async (req, res) => {
@@ -124,6 +158,13 @@ router.post('/register', async (req, res) => {
     address: { address, city, state, zip },
     phone
   } = req.body;
+  if (await accountExists(email)) {
+    res.json({
+      success: false,
+      message: 'An account with this email already exists!'
+    });
+    return;
+  }
   try {
     const salt = await bcrypt.genSalt(1);
     const passwordHash = await bcrypt.hash(password, salt);
@@ -133,7 +174,7 @@ router.post('/register', async (req, res) => {
       email, passwordHash, salt, firstName, lastName, address, city, state, +zip, +phone, Date.now());
     console.log(`Created account ${email}.`);
     req.session.identity = email;
-    res.send({
+    res.json({
       success: true
     });
   } catch (err) {

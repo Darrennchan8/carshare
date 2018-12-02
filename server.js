@@ -248,6 +248,18 @@ router.get('/analytics', async (req, res) => {
   }, {
     label: 'Vehicles parked in New York, New York',
     table: await query(`SELECT Make, Model FROM vehicle NATURAL JOIN parking_lot WHERE city = 'New York' AND state = 'NY';`)
+  }, {
+    label: 'Names of all managers',
+    table: await query(`SELECT first_name 'First Name', last_name 'Last Name' FROM account WHERE email_address IN (SELECT DISTINCT manager_email_address email_address FROM employee WHERE manager_email_address IS NOT NULL);`)
+  }, {
+    label: 'Latest coordinates and timestamp of car "VZA-1234"',
+    table: await query(`SELECT coordinates, utc FROM vehicle NATURAL JOIN location_record WHERE license_plate_number = 'VZA-1234' ORDER BY utc DESC LIMIT 1;`)
+  }, {
+    label: 'Customer service representative emails',
+    table: await query(`SELECT email_address FROM role NATURAL JOIN job_type WHERE name LIKE '%customer service rep%';`)
+  }, {
+    label: 'Capacity of parking lots in 23220',
+    table: await query(`SELECT address, capacity FROM parking_lot WHERE zip_code = 23220;`)
   }];
   res.json(queries);
 });

@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(session({
   secret: '$2b$04$qEIOs7SmG8ORHvhi2Xzk4.',
   cookie: {
-    maxAge: 60000
+    maxAge: Infinity
   }
 }));
 
@@ -196,9 +196,8 @@ router.get('/reservation', async (req, res) => {
   }
   const lots = await query(`SELECT lot_id lotId, CONCAT(address, '. ', city, ', ', state, ', ', zip_code) address FROM parking_lot;`);
   for (const lot of lots) {
-    lot.vehicles = await query(`SELECT vin, make, model, year, color FROM vehicle WHERE lot_id = ?;`, lot.lotId);
+    lot.vehicles = await query(`SELECT vin, make, model, year, color, rate FROM vehicle WHERE lot_id = ?;`, lot.lotId);
     for (const vehicle of lot.vehicles) {
-      vehicle.rate = 8.5;
       vehicle.existingReservations = await query(`SELECT reservation_start start, reservation_end end FROM trip_details WHERE reservation_end > UNIX_TIMESTAMP() * 1000 AND vin = ?;`, vehicle.vin);
     }
   }
@@ -240,12 +239,27 @@ router.post('/createClientAccount', async (req, res) => {
   }
 });
 
+router.get('/addCredits', async (req, res) => {
+  if (!(await isEmployee(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+});
+
+router.get('/resetInternPasswords', async (req, res) => {
+  if (!(await isEmployee(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+});
+
 router.get('/analytics', async (req, res) => {
   if (!(await isEmployee(req.session.identity))) {
     res.status(401).send('Unauthorized');
     return;
   }
   const mostTripsClient = await query(`SELECT email_address 'Email Address' FROM trip_details GROUP BY email_address HAVING COUNT(*) = (SELECT COUNT(*) count FROM trip_details GROUP BY email_address ORDER BY count DESC LIMIT 1);`);
+  const internEmails = await query(`SELECT email_address 'Email Address', password_hash 'Password Hash' FROM role NATURAL JOIN job_type NATURAL JOIN employee NATURAL JOIN account WHERE employee_type = 'Intern';`);
   const queries = [{
     label: 'Fees associated with client credit cards',
     columns: ['Credit Card Number', 'Total Fees'],
@@ -315,6 +329,35 @@ router.get('/analytics', async (req, res) => {
     label: 'End times of reservations that are still in progress',
     columns: ['Reservation End Time'],
     table: await query(`SELECT reservation_end 'Reservation End Time' FROM trip_details WHERE actual_start IS NOT NULL AND actual_end IS NULL;`)
+  }, {
+    label: 'Vehicles with a mileage of more than 50000 miles',
+    columns: ['Make', 'Model', 'Year'],
+    table: await query(`SELECT Make, Model, Year FROM vehicle WHERE mileage > 50000;`)
+  }, {
+    label: 'Driver\'s license numbers of clients that have driven a Ford Focus',
+    columns: ['Driver\'s License Number'],
+    table: await query(`SELECT drivers_license_number 'Driver\\'s License Number' FROM vehicle NATURAL JOIN trip_details NATURAL JOIN client WHERE make = 'Ford' AND model = 'Focus';`)
+  }, {
+    label: 'Driver\'s license numbers of clients that have driven a Ford Focus',
+    columns: ['Driver\'s License Number'],
+    table: await query(`SELECT drivers_license_number 'Driver\\'s License Number' FROM vehicle NATURAL JOIN trip_details NATURAL JOIN client WHERE make = 'Ford' AND model = 'Focus';`)
+  }, {
+    label: 'Intern emails & password hashes',
+    columns: ['Email Address', 'Password Hash'],
+    table: internEmails,
+    action: {
+      message: 'Reset Intern Passwords.',
+      method: 'POST',
+      url: '/resetInternPasswords'
+    }
+  }, {
+    label: 'Rates in Washington D.C for less than 10$',
+    columns: ['License Plate Number', 'Rate'],
+    table: await query(`SELECT license_plate_number 'License Plate Number', Rate FROM parking_lot NATURAL JOIN vehicle WHERE state = 'DC' AND city = 'District of Columbia' AND rate < 10;`)
+  }, {
+    label: 'Clients that share credit card numbers',
+    columns: ['Email Address', 'Credit Card Number'],
+    table: await query(`SELECT c1.email_address 'Email Address', c1.credit_card_number 'Credit Card Number' FROM client c1 JOIN client c2 ON c1.email_address != c2.email_address AND c1.credit_card_number = c2.credit_card_number;`)
   }];
   res.json(queries);
 });

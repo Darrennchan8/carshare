@@ -4,17 +4,17 @@ INSERT INTO parking_lot(lot_id, address, city, state, zip_code, capacity) VALUES
     (3, '200 West Cary Street', 'Richmond', 'VA', 23220, 4),
     (4, '607 North 10th Street', 'Richmond', 'VA', 23220, 3);
 
-INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plate_number) VALUES
-    ('1G1ZB5E18BF215943', 1, 'Ford', 'Focus', 2018, 'Black', 2000, 'JJZ-7865'),
-    ('1FTCR11T1JUD23467', 2, 'Ford', 'Focus', 2018, 'White', 20000, 'HVZ-1234'),
-    ('1FAFP52U83A163390', 1, 'Honda', 'Civic', 2017, 'Silver', 23756, 'VZA-1234'),
-    ('1FDEE14N9MHA80517', 3, 'Honda', 'Fit', 2017, 'White', 12000, 'AZV-5432'),
-    ('3VWPD69M51M113790', 3, 'Honda', 'CR-V', 2018, 'Grey', 2300, 'VHA-2030'),
-    ('1GTEK14H8DJ565795', 4, 'Tesla', 'Model 3', 2018, 'Black', 2300, 'VHA-2030'),
-    ('JW6AJC1H7RL081260', 4, 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015'),
-    ('5TBJN321XYS072757', 4, 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222'),
-    ('1GYS4EEJ0CR116546', 2, 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798'),
-    ('1D4SE5GT7BC646986', 1, 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030');
+INSERT INTO vehicle(vin, lot_id, make, model, year, color, mileage, license_plate_number, rate) VALUES
+    ('1G1ZB5E18BF215943', 1, 'Ford', 'Focus', 2018, 'Black', 2000, 'JJZ-7865', 7),
+    ('1FTCR11T1JUD23467', 2, 'Ford', 'Focus', 2018, 'White', 20000, 'HVZ-1234', 7),
+    ('1FAFP52U83A163390', 1, 'Honda', 'Civic', 2017, 'Silver', 23756, 'VZA-1234', 7.5),
+    ('1FDEE14N9MHA80517', 3, 'Honda', 'Fit', 2017, 'White', 12000, 'AZV-5432', 7),
+    ('3VWPD69M51M113790', 3, 'Honda', 'CR-V', 2018, 'Grey', 2300, 'VHA-2030', 7),
+    ('1GTEK14H8DJ565795', 4, 'Tesla', 'Model 3', 2018, 'Black', 2300, 'VHA-2030', 12),
+    ('JW6AJC1H7RL081260', 4, 'Tesla', 'Model X', 2018, 'Silver', 1200, 'GHZ-2015', 18),
+    ('5TBJN321XYS072757', 4, 'Subaru', 'Impreza', 2017, 'Silver', 14000, 'DCA-1222', 7.25),
+    ('1GYS4EEJ0CR116546', 2, 'Volkswagen', 'Golf', 2018, 'Black', 0, 'FVA-6798', 7.5),
+    ('1D4SE5GT7BC646986', 1, 'Volkswagen', 'Golf', 2018, 'White', 0, 'GHZ-1030', 7.5);
 
 INSERT INTO account(email_address, password_hash, salt, first_name, last_name, address, city, state, zip_code, phone_number, creation_date) VALUES
     ('rodriguezdl@vcu.edu', '$2a$12$0TBPmJfOif1q4m9DFCQPVOzw4xkQsqWNiiF9dIHGH3Wepz34a3R6C', '$2b$16$WV9K8/YenLXnJhb09/Ekau', 'Daniel', 'Rodriguez',

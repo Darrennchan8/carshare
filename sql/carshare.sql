@@ -16,6 +16,7 @@ CREATE TABLE vehicle (
     color VARCHAR(255) NOT NULL,
     mileage DOUBLE UNSIGNED NOT NULL,
     license_plate_number VARCHAR(8) NOT NULL,
+    rate DOUBLE(5, 2) UNSIGNED NOT NULL,
     FOREIGN KEY (lot_id) REFERENCES parking_lot(lot_id)
         ON DELETE RESTRICT
         ON UPDATE CASCADE

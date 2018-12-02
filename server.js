@@ -273,6 +273,26 @@ router.get('/analytics', async (req, res) => {
     label: 'Capacity of parking lots in 23220',
     columns: ['Address', 'Capacity'],
     table: await query(`SELECT Address, Capacity FROM parking_lot WHERE zip_code = 23220;`)
+  }, {
+    label: 'VIN and Parking Location of oldest cars',
+    columns: ['VIN', 'Parking Location'],
+    table: await query(`SELECT VIN, CONCAT(address, '. ', city, ', ', state) 'Parking Location' FROM vehicle NATURAL JOIN parking_lot WHERE year = (SELECT year FROM vehicle ORDER BY year ASC LIMIT 1);`)
+  }, {
+    label: '6-figure salary employees that made a reservation today',
+    columns: ['Name'],
+    table: await query(`SELECT CONCAT(first_name, ' ', last_name) 'Name' FROM account NATURAL JOIN employee NATURAL JOIN trip_details WHERE wage BETWEEN 100000 AND 999999.99 AND DATE(FROM_UNIXTIME(FLOOR(reservation_start / 1000))) = CURDATE();`)
+  }, {
+    label: 'Clients living in Virginia',
+    columns: ['Email Address'],
+    table: await query(`SELECT email_address 'Email Address' FROM client NATURAL JOIN account WHERE state = 'VA';`)
+  }, {
+    label: 'Wage of CEOs',
+    columns: ['Name', 'Wage'],
+    table: await query(`SELECT CONCAT(first_name, ' ', last_name) Name, Wage FROM employee NATURAL JOIN account WHERE manager_email_address IS NULL;`)
+  }, {
+    label: 'End times of reservations that are still in progress',
+    columns: ['Reservation End Time'],
+    table: await query(`SELECT reservation_end 'Reservation End Time' FROM trip_details WHERE actual_end IS NULL;`)
   }];
   res.json(queries);
 });

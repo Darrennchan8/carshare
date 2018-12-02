@@ -292,7 +292,7 @@ router.get('/analytics', async (req, res) => {
   }, {
     label: 'End times of reservations that are still in progress',
     columns: ['Reservation End Time'],
-    table: await query(`SELECT reservation_end 'Reservation End Time' FROM trip_details WHERE actual_end IS NULL;`)
+    table: await query(`SELECT reservation_end 'Reservation End Time' FROM trip_details WHERE actual_start IS NOT NULL AND actual_end IS NULL;`)
   }];
   res.json(queries);
 });

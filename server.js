@@ -258,6 +258,9 @@ router.get('/analytics', async (req, res) => {
     label: 'Customer service representative emails',
     table: await query(`SELECT email_address 'Email Address' FROM role NATURAL JOIN job_type WHERE name LIKE '%customer service rep%';`)
   }, {
+    label: 'Incident surcharges less than $100 on April Fools day',
+    table: await query(`SELECT Reservation, Surcharge FROM trip_details NATURAL JOIN incident WHERE MONTH(FROM_UNIXTIME(FLOOR(actual_start / 1000))) = 4 AND DAY(FROM_UNIXTIME(FLOOR(actual_start / 1000))) = 1;`)
+  }, {
     label: 'Capacity of parking lots in 23220',
     table: await query(`SELECT Address, Capacity FROM parking_lot WHERE zip_code = 23220;`)
   }];

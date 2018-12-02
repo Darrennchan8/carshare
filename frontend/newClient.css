@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', serif;
+}
+
+.nav {
+    background-color: black;
+    color: white;
+    list-style: none;
+    text-align: right;
+    padding: 20px 0 20px 0;
+    box-shadow: 0 35px 35px 0x rgba(0,0,0,0.5)
+    
+}
+
+.nav > li {
+    display:inline-block;
+    padding: 0 25px 0 25px'
+    font-size: 12 px;
+}
+
+.nav > li > a {
+    text-decoration: none;
+    color: white;
+    padding: 0 30px 0 0;
+}
+
+.nav > li > a.hover {
+    color: #c1c1c1;
+}
+
+.logo {
+    color: white;
+    width: 120px;
+    margin: 0 auto;
+    
+    float: left;
+}
+
+.new_Client div#newClient{
+    color: black;
+    font-size: 30px;
+}
+
+.new_Client{
+   
+    
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing:border-box;
+    padding: 40px 30px;
+    opacity: 0.8;  
+}
+
+.new_Client input[type="drivers"], input[type="creditCard"], 
+{
+    border:none;
+    border-bottom: 1px solid #fff;
+    height: 40px;
+    color: black;
+    font-size: 16px;
+    width: 100%;
+}
+
+.new_Client p{
+    color: black;
+}
+
+

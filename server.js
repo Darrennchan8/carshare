@@ -74,6 +74,23 @@ const assertSchema = function(actual, expected) {
   return true;
 };
 
+const isEmployee = async function(email) {
+  const records = await query('SELECT * FROM employee WHERE email_address=?', email);
+  return !!records.length;
+};
+
+const isClient = async function(email) {
+  const records = await query('SELECT * FROM client WHERE email_address=?', email);
+  return !!records.length;
+};
+
+const getAccountRoles = async function(email) {
+  return {
+    isEmployee: await isEmployee(email),
+    isClient: await isClient(email)
+  };
+};
+
 router.post('/login', async (req, res) => {
   if (!assertSchema(req.body, {
         email: 'string',
@@ -89,7 +106,8 @@ router.post('/login', async (req, res) => {
     req.session.identity = email;
     console.log(`${email} successfully logged in.`);
     res.json({
-      success: true
+      success: true,
+      ...(await getAccountRoles(email))
     });
   } else {
     console.log(`${email} unsuccessfully attempted login.`);
@@ -98,6 +116,17 @@ router.post('/login', async (req, res) => {
       message: 'Incorrect email or password.'
     });
   }
+});
+
+router.post('/accountDetails', async (req, res) => {
+  if (!req.session.identity) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  res.json({
+    success: true,
+    ...(await getAccountRoles(req.session.identity))
+  });
 });
 
 router.post('/register', async (req, res) => {

@@ -65,7 +65,7 @@ const assertSchema = function(actual, expected) {
     if (actual[key] === null || typeof value == 'string' && typeof actual[key] != value) {
       return false;
     }
-    if (typeof value == 'object' && !assertSchema(actual[key], value)) {
+    if (typeof value == 'object' && (typeof actual[key] != 'object' || !assertSchema(actual[key], value))) {
       return false;
     }
   }

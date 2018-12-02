@@ -12,9 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(session({
   secret: '$2b$04$qEIOs7SmG8ORHvhi2Xzk4.',
-  cookie: {
-    maxAge: Infinity
-  }
+  name: 'PHPSESSID',
+  resave: true,
+  saveUninitialized: true,
+  rolling: true
 }));
 
 app.use('/', express.static('frontend'));
@@ -365,8 +366,10 @@ router.get('/analytics', async (req, res) => {
 router.post('/logout', async (req, res) => {
   req.session.identity && console.log(`${req.session.identity} logged out.`);
   req.session.identity = null;
-  res.json({
-    success: true
+  req.session.destroy(function(err) {
+    res.json({
+      success: !!err
+    });
   });
 });
 

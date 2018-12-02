@@ -10,19 +10,17 @@ body {
 
 .registrationbox{
     width: 320px;
-    height: 450px;
-    background: rgba(0, 0, 0, 0.5);
+    height: 650px;
     color: #fff;
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
-    box-sizing:border-box;
-    padding: 70px 30px;
+    padding: 40px 30px;
     opacity: 0.8;   
 }
 
-.registrationbox input[type="text"], input[type="password"], input[type="name"], input[type = "Address"], input[type="Phone"]
+.registrationbox input[type="text"], input[type="password"], input[type="name"], input[type = "Address"], input[type="City"], input[type="State"], input[type="zip"],  input[type="Phone"]
 {
     border: none;
     border-bottom: 1px solid #fff;
@@ -31,11 +29,11 @@ body {
     height: 40px;
     color: #fff;
     font-size: 16px;
-    
+    width: 100%;
 }
 
 .registrationbox div#registration{
-    margin: 0 0 20px 0;
+    margin: 0 0 0 0;
 }
 
 .registrationbox button{
@@ -46,4 +44,8 @@ body {
     margin: 40px 0 16px 0;
 }
 
+.registrationbox p#failure-message{
+    color: red;
+    padding: 5px 0;
+}
 

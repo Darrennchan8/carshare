@@ -78,11 +78,17 @@ const accountExists = async function(email) {
 };
 
 const isEmployee = async function(email) {
+  if (!email) {
+    return false;
+  }
   const records = await query('SELECT * FROM employee WHERE email_address=?', email);
   return !!records.length;
 };
 
 const isClient = async function(email) {
+  if (!email) {
+    return false;
+  }
   const records = await query('SELECT * FROM client WHERE email_address=?', email);
   return !!records.length;
 };
@@ -184,6 +190,10 @@ router.post('/register', async (req, res) => {
 });
 
 router.get('/reservation', async (req, res) => {
+  if (!(await isClient(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
   const lots = await query(`SELECT lot_id lotId, CONCAT(address, '. ', city, ', ', state, ', ', zip_code) address FROM parking_lot;`);
   for (const lot of lots) {
     lot.vehicles = await query(`SELECT vin, make, model, year, color FROM vehicle WHERE lot_id = ?;`, lot.lotId);
@@ -231,7 +241,7 @@ router.post('/createClientAccount', async (req, res) => {
 });
 
 router.get('/analytics', async (req, res) => {
-  if (!req.session.identity || !(await isEmployee(req.session.identity))) {
+  if (!(await isEmployee(req.session.identity))) {
     res.status(401).send('Unauthorized');
     return;
   }

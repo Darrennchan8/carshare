@@ -32,7 +32,7 @@
             const zipField=document.querySelector('#zip');
             const phoneField=document.querySelector('#phone');
             const registerButton=document.querySelector('#register');
-            const failureMessage=document.querySelector('#failure-message')
+            const failureMessage=document.querySelector('#failure-message');
             registerButton.addEventListener('click', function(e){
                 const email=emailField.value;
                 const password=passwordField.value;
@@ -66,10 +66,10 @@
                     })
                 })
                 .then(response => response.json())
-                .then(response=> {
+                .then(response => {
                     console.log(response);
-                    if (response.sucess) {
-                        location.href='new-client.html';
+                    if (response.success) {
+                        location.href='newClient.html';
                     } else {
                         failureMessage.innerText=response.message;
                     }

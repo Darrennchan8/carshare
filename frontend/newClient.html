@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf=8">
     <title>NAVBAR</title>
-    <link rel="stylesheet" type="text/css" href="landingPage.css">
+    <link rel="stylesheet" type="text/css" href="newClient.css">
 </head>
 <body>
 
@@ -13,9 +13,9 @@
             CARSHARE
         </div>
         
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Support</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a href="#" id="home">Home</a></li>
+        <li><a href="#" id="support">Support</a></li>
+        <li><a href="#" id="logout">Log Out</a></li>
         
         
     </ul>
@@ -23,14 +23,62 @@
 
 <div class='new_Client'>
     <div id="newClient"><b>Welcome to Carshare</b></div>
-    <p> We will need a few more details from you before you begin sharing!</p>
+    <p> We need a few more details from you before you begin sharing!</p>
     <p> Please provide your driver's license number: </p>
     <input type="drivers" placeholder="Driver's License Number" id="driversLicense">
     <p> Please provide your credit card information</p>
     <input type="creditCard" placeholder="Card Number" id="creditCard">
+    <button id="submitButton">Submit</button>
+    <p id="failureMessage"></p>
 </div>
-    
-    
+<script>
+    (function(){
+        const driversLicField=document.querySelector('#driversLicense');
+        const creditCardField=document.querySelector('#creditCard');
+        const submitButton=document.querySelector('#submitButton');
+        const failureMessage=document.querySelector('#failureMessage');
+        const logout=document.querySelector('#logout')
+        submitButton.addEventListener('click', function(e){
+            const driversLicenseNumber=driversLicField.value;
+            const creditCardNumber=creditCardField.value;
+            fetch('/api/createClientAccount', {
+                method:'POST',
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({
+                        driversLicenseNumber,
+                        creditCardNumber
+                    })
+            })
+            .then(response=>response.json())
+            .then(response=> {
+                console.log(response);
+                if (response.success) {
+                    location.href='client.html';
+                } else {
+                    failureMessage.innerText = response.message;
+                }
+            });
+        logout.addEventListener('click', function(e){
+            fetch('/api/logout', {
+                method:'POST',
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                    },
+                    credentials: 'same-origin'
+            })
+            .then(response=>response.json())
+            .then(response=> {
+                console.log(response);
+                location.href='index.html';
+            });   
+        });
+        });
+    })();
+</script>
+   
     
 </body>
 </html>

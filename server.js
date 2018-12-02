@@ -202,7 +202,10 @@ router.get('/reservation', async (req, res) => {
       vehicle.existingReservations = await query(`SELECT reservation_start start, reservation_end end FROM trip_details WHERE reservation_end > UNIX_TIMESTAMP() * 1000 AND vin = ?;`, vehicle.vin);
     }
   }
-  return lots;
+  res.json({
+    success: true,
+    ...lots
+  });
 });
 
 router.post('/createClientAccount', async (req, res) => {

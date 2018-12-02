@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(session({
   secret: '$2b$04$qEIOs7SmG8ORHvhi2Xzk4.',
   cookie: {
-    maxAge: 60000
+    maxAge: Infinity
   }
 }));
 

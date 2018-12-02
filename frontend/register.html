@@ -13,8 +13,12 @@
         <input type="name" placeholder="Name" id="firstName">
         <input type="name" placeholder="Name" id="lastName">
         <input type="address" placeholder="address" id="address">
+        <input type="city" placeholder="city" id="city">
+        <input type="state" placeholder="state" id="state">
+        <input type="zip" placeholder="zip" id="zip">
         <input type="phone" placeholder="Phone" id="phone">
         <button id="register">Register</button>
+        <p id="failure-message"></p>
     </div>
     <script>
         (function(){
@@ -23,16 +27,23 @@
             const firstNameField=document.querySelector('#firstName');
             const lastNameField=document.querySelector('#lastName');
             const addressField=document.querySelector('#address');
+            const cityField=document.querySelector('#city');
+            const stateField=document.querySelector('#state');
+            const zipField=document.querySelector('#zip');
             const phoneField=document.querySelector('#phone');
             const registerButton=document.querySelector('#register');
+            const failureMessage=document.querySelector('#failure_message')
             registerButton.addEventListener('click', function(e){
                 const email=emailField.value;
                 const password=passwordField.value;
                 const firstName=firstNameField.value;
                 const lastName=lastNameField.value;
                 const address=addressField.value;
+                const city=cityField.value;
+                const state=stateField.value;
+                const zip=zipField.value;
                 const phone=phoneField.value;
-                fetch('/api/login', {
+                fetch('/api/register', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json; charset=utf-8"
@@ -41,8 +52,16 @@
                     body: JSON.stringify({
                         email,
                         password,
-                        firstName,
-                        lastName,
+                        name: {
+                            first: firstName, 
+                            last: lastName
+                        },
+                        address: {
+                            address,
+                            city,
+                            state,
+                            zip
+                        },
                         phone
                     })
                 })
@@ -50,11 +69,9 @@
                 .then(response=> {
                     console.log(response);
                     if(response.sucess){
-                        console.log(response);
-                        /*put code here*/
-
+                        location.href=''
                     }else{
-
+                        failureMessage.innerText=response.message;
                     }
                 }); 
             });

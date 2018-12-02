@@ -10,7 +10,7 @@ body {
 
 .registrationbox{
     width: 320px;
-    height: 450px;
+    height: 600px;
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 50%;
@@ -22,7 +22,7 @@ body {
     opacity: 0.8;   
 }
 
-.registrationbox input[type="text"], input[type="password"], input[type="name"], input[type = "Address"], input[type="Phone"]
+.registrationbox input[type="text"], input[type="password"], input[type="name"], input[type = "Address"], input[type="City"], input[type="State"], input[type="zip"],  input[type="Phone"]
 {
     border: none;
     border-bottom: 1px solid #fff;
@@ -45,5 +45,7 @@ body {
     border-radius: 20px;
     margin: 40px 0 16px 0;
 }
+
+
 
 

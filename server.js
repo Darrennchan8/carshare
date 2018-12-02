@@ -226,9 +226,11 @@ router.get('/analytics', async (req, res) => {
   const mostTripsClient = await query(`SELECT email_address 'Email Address' FROM trip_details GROUP BY email_address HAVING COUNT(*) = (SELECT COUNT(*) count FROM trip_details GROUP BY email_address ORDER BY count DESC LIMIT 1);`);
   const queries = [{
     label: 'Fees associated with client credit cards',
+    columns: ['Credit Card Number', 'Total Fees'],
     table: await query(`SELECT credit_card_number 'Credit Card Number', SUM(surcharge) - SUM(waived) as 'Total Fees' FROM incident NATURAL JOIN trip_details NATURAL JOIN client WHERE surcharge > 0 OR waived > 0 GROUP BY credit_card_number;`)
   }, {
     label: 'Client with the most amount of trips',
+    columns: ['Email Address'],
     table: mostTripsClient,
     action: {
       message: 'Add 10 credits.',
@@ -241,27 +243,35 @@ router.get('/analytics', async (req, res) => {
     }
   }, {
     label: 'Unviewed feedback',
+    columns: ['Email Address', 'Subject', 'Message'],
     table: await query(`SELECT email_address 'Email Address', Subject, Message FROM feedback WHERE viewed = FALSE;`)
   }, {
     label: 'Cars that haven\'t had maintenance in a year.',
+    columns: ['License Plate Number'],
     table: await query(`SELECT license_plate_number 'License Plate Number' FROM vehicle WHERE vin NOT IN (SELECT vin FROM maintenance WHERE utc > (UNIX_TIMESTAMP() - 365 * 24 * 60 * 60) * 1000);`)
   }, {
     label: 'Vehicles parked in New York, New York',
+    columns: ['Make', 'Model'],
     table: await query(`SELECT Make, Model FROM vehicle NATURAL JOIN parking_lot WHERE city = 'New York' AND state = 'NY';`)
   }, {
     label: 'Names of all managers',
+    columns: ['First Name', 'Last Name'],
     table: await query(`SELECT first_name 'First Name', last_name 'Last Name' FROM account WHERE email_address IN (SELECT DISTINCT manager_email_address email_address FROM employee WHERE manager_email_address IS NOT NULL);`)
   }, {
     label: 'Latest coordinates and timestamp of car "VZA-1234"',
+    columns: ['Coordinates', 'Timestamp'],
     table: await query(`SELECT Coordinates, utc 'Timestamp' FROM vehicle NATURAL JOIN location_record WHERE license_plate_number = 'VZA-1234' ORDER BY utc DESC LIMIT 1;`)
   }, {
     label: 'Customer service representative emails',
+    columns: ['Email Address'],
     table: await query(`SELECT email_address 'Email Address' FROM role NATURAL JOIN job_type WHERE name LIKE '%customer service rep%';`)
   }, {
     label: 'Incident surcharges less than $100 on April Fools day',
+    columns: ['Reservation', 'Surcharge'],
     table: await query(`SELECT Reservation, Surcharge FROM trip_details NATURAL JOIN incident WHERE MONTH(FROM_UNIXTIME(FLOOR(actual_start / 1000))) = 4 AND DAY(FROM_UNIXTIME(FLOOR(actual_start / 1000))) = 1;`)
   }, {
     label: 'Capacity of parking lots in 23220',
+    columns: ['Address', 'Capacity'],
     table: await query(`SELECT Address, Capacity FROM parking_lot WHERE zip_code = 23220;`)
   }];
   res.json(queries);

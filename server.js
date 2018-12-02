@@ -183,6 +183,71 @@ router.post('/register', async (req, res) => {
   }
 });
 
+router.post('/createClientAccount', async (req, res) => {
+  if (!assertSchema(req.body, {
+    driversLicenseNumber: 'string',
+    creditCardNumber: 'string'
+  })) {
+    res.status(400).send('Bad Request');
+  }
+  const {
+    driversLicenseNumber,
+    creditCardNumber
+  } = req.body;
+  const identity = req.session.identity;
+  if (!identity) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  if (await isClient(identity)) {
+    res.json({
+      success: false,
+      message: 'This account is already a client!'
+    });
+    return;
+  }
+  try {
+    await query(`INSERT INTO client(email_address, drivers_license_number, credit_card_number, credits) VALUES (?, ?, ?, ?)`,
+        identity, driversLicenseNumber, creditCardNumber, 0);
+    res.json({
+      success: true
+    });
+  } catch (err) {
+    console.error(`Error while creating client.`, req.body, err);
+    res.status(500).send('Server Error');
+  }
+});
+
+// router.get('/analytics', async (req, res) => {
+//   if (!req.session.identity || !(await isEmployee(req.session.identity))) {
+//     res.status(401).send('Unauthorized');
+//     return;
+//   }
+//   const queries = [{
+//     label: 'Fees associated with client credit cards',
+//     table: await query(`SELECT credit_card_number 'Credit Card Number', SUM(surcharge) - SUM(waived) as 'Total Fees' FROM incident NATURAL JOIN trip_details NATURAL JOIN client WHERE surcharge > 0 OR waived > 0 GROUP BY credit_card_number;`)
+//   }, {
+//     label: 'Client with the most amount of trips',
+//     table: await query(`SELECT email_address 'Email Address' FROM trip_details GROUP BY email_address HAVING COUNT(*) = (SELECT COUNT(*) count FROM trip_details GROUP BY email_address ORDER BY count DESC LIMIT 1);`),
+//     action: {
+//       message: 'Add 10 credits.',
+//       url: '/addCredits',
+//       body: {
+//       }
+//     }
+//   }, {
+//     label: 'Unviewed feedback',
+//     table: await query(`SELECT email_address 'Email Address', Subject, Message FROM feedback WHERE viewed = FALSE;`)
+//   }, {
+//     label: 'Cars that haven\'t had maintenance in a year.',
+//     table: await query(`SELECT license_plate_number 'License Plate Number' FROM vehicle WHERE vin NOT IN (SELECT vin FROM maintenance WHERE utc > (UNIX_TIMESTAMP() - 365 * 24 * 60 * 60) * 1000);`)
+//   }, {
+//     label: 'Vehicles parked in New York, New York',
+//     table: await query(`SELECT Make, Model FROM vehicle NATURAL JOIN parking_lot WHERE city = 'New York' AND state = 'NY';`);
+//   }];
+//   res.json(queries);
+// });
+
 router.post('/logout', async (req, res) => {
   req.session.identity && console.log(`${req.session.identity} logged out.`);
   req.session.identity = null;

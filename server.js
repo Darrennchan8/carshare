@@ -73,6 +73,7 @@ const assertSchema = function(actual, expected) {
 };
 
 router.post('/login', async (req, res) => {
+  console.log(req.body);
   if (!assertSchema(req.body, {
         email: 'string',
         password: 'string'

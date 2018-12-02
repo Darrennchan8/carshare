@@ -11,11 +11,13 @@ body {
 .registrationbox{
     width: 320px;
     height: 650px;
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     top: 50%;
     left: 50%;
     position: absolute;
     transform: translate(-50%,-50%);
+    box-sizing:border-box;
     padding: 40px 30px;
     opacity: 0.8;   
 }

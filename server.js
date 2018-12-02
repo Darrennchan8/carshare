@@ -183,6 +183,18 @@ router.post('/register', async (req, res) => {
   }
 });
 
+router.get('/reservation', async (req, res) => {
+  const lots = await query(`SELECT lot_id lotId, CONCAT(address, '. ', city, ', ', state, ', ', zip_code) address FROM parking_lot;`);
+  for (const lot of lots) {
+    lot.vehicles = await query(`SELECT vin, make, model, year, color FROM vehicle WHERE lot_id = ?;`, lot.lotId);
+    for (const vehicle of lot.vehicles) {
+      vehicle.rate = 8.5;
+      vehicle.existingReservations = await query(`SELECT reservation_start start, reservation_end end FROM trip_details WHERE reservation_end > UNIX_TIMESTAMP() * 1000 AND vin = ?;`, vehicle.vin);
+    }
+  }
+  return lots;
+});
+
 router.post('/createClientAccount', async (req, res) => {
   if (!assertSchema(req.body, {
     driversLicenseNumber: 'string',

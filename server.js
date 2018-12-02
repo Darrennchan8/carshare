@@ -336,11 +336,11 @@ router.get('/analytics', async (req, res) => {
   }, {
     label: 'Driver\'s license numbers of clients that have driven a Ford Focus',
     columns: ['Driver\'s License Number'],
-    table: await query(`SELECT drivers_license_number 'Driver\'s License Number' FROM vehicle NATURAL JOIN trip_details NATURAL JOIN client WHERE make = 'Ford' AND model = 'Focus';`)
+    table: await query(`SELECT drivers_license_number 'Driver\\'s License Number' FROM vehicle NATURAL JOIN trip_details NATURAL JOIN client WHERE make = 'Ford' AND model = 'Focus';`)
   }, {
     label: 'Driver\'s license numbers of clients that have driven a Ford Focus',
     columns: ['Driver\'s License Number'],
-    table: await query(`SELECT drivers_license_number 'Driver\'s License Number' FROM vehicle NATURAL JOIN trip_details NATURAL JOIN client WHERE make = 'Ford' AND model = 'Focus';`)
+    table: await query(`SELECT drivers_license_number 'Driver\\'s License Number' FROM vehicle NATURAL JOIN trip_details NATURAL JOIN client WHERE make = 'Ford' AND model = 'Focus';`)
   }, {
     label: 'Intern emails & password hashes',
     columns: ['Email Address', 'Password Hash'],

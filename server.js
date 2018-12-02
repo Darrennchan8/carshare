@@ -72,6 +72,11 @@ const assertSchema = function(actual, expected) {
   return true;
 };
 
+const accountExists = async function(email) {
+  const records = await query('SELECT * FROM account WHERE email_address=?', email);
+  return !!records.length;
+};
+
 const isEmployee = async function(email) {
   const records = await query('SELECT * FROM employee WHERE email_address=?', email);
   return !!records.length;
@@ -152,6 +157,13 @@ router.post('/register', async (req, res) => {
     address: { address, city, state, zip },
     phone
   } = req.body;
+  if (await accountExists(email)) {
+    res.json({
+      success: false,
+      message: 'An account with this email already exists!'
+    });
+    return;
+  }
   try {
     const salt = await bcrypt.genSalt(1);
     const passwordHash = await bcrypt.hash(password, salt);
@@ -161,7 +173,7 @@ router.post('/register', async (req, res) => {
       email, passwordHash, salt, firstName, lastName, address, city, state, +zip, +phone, Date.now());
     console.log(`Created account ${email}.`);
     req.session.identity = email;
-    res.send({
+    res.json({
       success: true
     });
   } catch (err) {

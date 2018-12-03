@@ -57,3 +57,7 @@ body {
     padding: 16px;
     background-color: #BDBDBD;
 }
+
+#maintenance-panel {
+    flex-grow: 1;
+}

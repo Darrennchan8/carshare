@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', serif;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .nav {
@@ -10,8 +12,8 @@ body {
     list-style: none;
     text-align: right;
     padding: 20px 0 20px 0;
-    box-shadow: 0 35px 35px 0x rgba(0,0,0,0.5);
-    margin-bottom: 0;
+    box-shadow: 0 35px 35px 0x rgba(0,0,0,0.7);
+    margin: 0;
 }
 
 .nav > li {
@@ -38,21 +40,20 @@ body {
     float: left;
 }
 
-#reservation-container {
-    display: flex;
+#maintenance-container {
+    display:flex;
     flex-direction: row;
     height: 100%;
 }
 
-#lot-container, #car-container {
-   display: flex;
-   flex-direction: column;
-   border-right: 1px solid black;
+#vehicle-container {
+    border-right: 1px solid black;
+    overflow: scroll;
 }
 
- #lot-container > div, #car-container > div {
+#vehicle-container > div {
     border-bottom: 1px solid black;
+    cursor: pointer;
     padding: 16px;
     background-color: #BDBDBD;
-    cursor: pointer;
 }

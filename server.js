@@ -205,6 +205,18 @@ router.get('/reservation', async (req, res) => {
   res.json(lots);
 });
 
+router.get('/maintenance', async (req, res) => {
+  if (!(await isEmployee(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  const vehicles = await query(`SELECT vin, make, model, year, color, license_plate_number licensePlateNumber FROM vehicle;`);
+  for (const vehicle of vehicles) {
+    vehicle.maintenanceHistory = await query(`SELECT service_type serviceType, utc FROM maintenance WHERE vin = ?;`, vehicle.vin);
+  }
+  res.json(vehicles);
+});
+
 router.post('/createClientAccount', async (req, res) => {
   if (!assertSchema(req.body, {
     driversLicenseNumber: 'string',

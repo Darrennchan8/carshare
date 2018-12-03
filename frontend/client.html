@@ -58,7 +58,7 @@
                 const colorYearMakeModel = document.createElement('span');
                 const rate = document.createElement('span');
                 colorYearMakeModel.innerText = car.color + ' ' + car.year + ' ' + car.make + ' ' + car.model;
-                rate.innerText = `Rate: $${car.rate.toPrecision(2)}`;
+                rate.innerText = `Rate: $${car.rate.toFixed(2)}`;
                 carRoot.appendChild(colorYearMakeModel);
                 carRoot.appendChild(document.createElement('br'));
                 carRoot.appendChild(rate);

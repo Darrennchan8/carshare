@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reservations</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h2>Ongoing Reservations</h2>
+    <div id="ongoing-container"></div>
+    <h2>Upcoming Reservations</h2>
+    <div id="upcoming-container"></div>
+    <h2>Past Reservations</h2>
+    <div id="past-container"></div>
+    <script>
+        (function() {
+            const ongoing = document.querySelector('#ongoing-container');
+            const upcoming = document.querySelector('#upcoming-container');
+            const past = document.querySelector('#past-container');
+            fetch('/api/reservations', {
+                credentials: 'same-origin'
+            })
+            .then(response => response.json())
+            .then(response => {
+                console.log(response);
+                const reservationElementFactory = function(reservation) {
+                    const wrapper = document.createElement('div');
+                    wrapper.style.padding = '16px';
+                    wrapper.style.backgroundColor = '#E0E0E0';
+                    wrapper.style.border = 'black solid 1px';
+                    wrapper.style.cursor = 'default';
+                    const time = document.createElement('div');
+                    time.innerText = new Date(reservation.reservationStart).toLocaleString() + ' - ' + new Date(reservation.reservationEnd).toLocaleString();
+                    wrapper.appendChild(time);
+                    const vehicle = document.createElement('div');
+                    vehicle.innerText = reservation.vehicle + ' - $' + reservation.rate + ' per hour.';
+                    wrapper.appendChild(vehicle);
+                    const address = document.createElement('div');
+                    address.innerText = reservation.location;
+                    wrapper.appendChild(address);
+                    return wrapper;
+                };
+                if (!response.current.length) {
+                    ongoing.innerText = 'No ongoing reservations';
+                } else {
+                    for (const reservation of response.current) {
+                        ongoing.appendChild(reservationElementFactory(reservation));
+                    }
+                }
+                if (!response.upcoming.length) {
+                    upcoming.innerText = 'No upcoming reservations';
+                } else {
+                    for (const reservation of response.upcoming) {
+                        upcoming.appendChild(reservationElementFactory(reservation));
+                    }
+                }
+                if (!response.past.length) {
+                    past.innerText = 'No past reservations';
+                } else {
+                    for (const reservation of response.past) {
+                        past.appendChild(reservationElementFactory(reservation));
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

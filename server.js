@@ -189,7 +189,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-router.get('/reservation', async (req, res) => {
+router.get('/allReservations', async (req, res) => {
   if (!(await isClient(req.session.identity))) {
     res.status(401).send('Unauthorized');
     return;
@@ -202,6 +202,30 @@ router.get('/reservation', async (req, res) => {
     }
   }
   res.json(lots);
+});
+
+router.get('/reservations', async (req, res) => {
+  if (!(await isClient(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  const reservationsArr = await query(`SELECT reservation_start reservationStart, reservation_end reservationEnd, t.rate, t.vin, CONCAT(year, ' ', color, ' ', make, ' ', model) vehicle, CONCAT(address, '. ', city, ', ', state, ' ', zip_code) location FROM trip_details t JOIN vehicle v on t.vin = v.vin NATURAL JOIN parking_lot WHERE email_address = ?;`, req.session.identity);
+  const reservations = {
+    current: [],
+    past: [],
+    upcoming: []
+  };
+  const now = Date.now();
+  for (const reservation of reservationsArr) {
+    if (reservation.reservationStart <= now && reservation.reservationEnd >= now) {
+      reservations.current.push(reservation);
+    } else if (reservation.reservationEnd <= now) {
+      reservations.past.push(reservation);
+    } else {
+      reservations.upcoming.push(reservation);
+    }
+  }
+  res.json(reservations);
 });
 
 router.get('/maintenance', async (req, res) => {

@@ -228,6 +228,32 @@ router.get('/reservations', async (req, res) => {
   res.json(reservations);
 });
 
+router.post('/reservation', async (req, res) => {
+  if (!(await isClient(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  console.log(req.body);
+  if (!assertSchema(req.body, {
+    vin: 'string',
+    start: 'number',
+    end: 'number'
+  })) {
+    res.status(400).send('Bad Request');
+  }
+  const {
+    vin,
+    start,
+    end
+  } = req.body;
+  const rate = (await query(`SELECT rate FROM vehicle WHERE vin = ?`, vin))[0].rate;
+  await query(`INSERT INTO trip_details(reservation_start, reservation_end, actual_start, actual_end, rate, email_address, vin) VALUES
+      (?, ?, NULL, NULL, ?, ?, ?)`, start, end, rate, req.session.identity, vin);
+  res.json({
+    success: true
+  });
+});
+
 router.get('/maintenance', async (req, res) => {
   if (!(await isEmployee(req.session.identity))) {
     res.status(401).send('Unauthorized');

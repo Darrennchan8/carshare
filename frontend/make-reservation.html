@@ -6,25 +6,26 @@
         <link rel="stylesheet" type="text/css" href="make-reservation.css">
 </head>
 <body>
-    
     <ul class="nav">
-        
-    <div class="logo">
-        CARSHARE
-        </div>
-
+        <div class="logo">CARSHARE</div>
         <li><a href="#" id="home">Home</a></li>
         <li><a href="#" id="logout">Log Out</a></li>      
     </ul>
-
-<div id="reservation-container">
-    <div id="lot-container">
+    <div id="reservation-container">
+        <div id="lot-container"></div>
+        <div id="car-container" style="display: none;"></div>
+        <div id="time-container" style="display: none;">
+            <div>
+                <span>Enter start time in minutes from now:</span>
+                <input type="text" placeholder="0" id="reservation-offset">
+            </div>
+            <div>
+                <span>Enter duration of the reservation in minutes:</span>
+                <input type="text" placeholder="0" id="reservation-duration">
+            </div>
+            <button id="make-reservation">Make reservation</button>
+        </div>
     </div>
-    <div id="car-container" style="display: none;">
-    </div>
-   <div id="time-container" style="display: none;">
-</div>
-</div>
 
     
     <div id="avatar"></div>
@@ -33,6 +34,34 @@
             const logout = document.querySelector('#logout');
             const lotContainer = document.querySelector('#lot-container');
             const carContainer = document.querySelector('#car-container');
+            const timeContainer = document.querySelector('#time-container');
+            let lastVin = null;
+            const reservationOffset = document.querySelector('#reservation-offset');
+            const reservationDuration = document.querySelector('#reservation-duration');
+            const makeReservation = document.querySelector('#make-reservation');
+            makeReservation.addEventListener('click', function(e) {
+                const [vin, start, end] = [
+                    lastVin,
+                    Date.now() + +(reservationOffset.value || 0) * 60 * 1000,
+                    Date.now() + (+(reservationOffset.value || 0) + +(reservationDuration.value || 0)) * 60 * 1000
+                ];
+                fetch('/api/reservation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=utf-8'
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify({
+                        vin,
+                        start,
+                        end
+                    })
+                })
+                .then(response => response.json())
+                .then(response => {
+                    location.href = 'view-reservations.html';
+                });
+            });
             const makeLot = function(lot) {
                 const lotRoot = document.createElement('div');
                 const address = document.createElement('span');
@@ -62,6 +91,10 @@
                 carRoot.appendChild(colorYearMakeModel);
                 carRoot.appendChild(document.createElement('br'));
                 carRoot.appendChild(rate);
+                carRoot.addEventListener('click', function(e) {
+                    timeContainer.style.display = null;
+                    lastVin = car.vin;
+                });
                 return carRoot;
             };
             logout.addEventListener('click', function(e) {

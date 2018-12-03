@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
-const path = require('path');
 
 const port = process.env.port || 8080;
 
@@ -217,6 +216,29 @@ router.get('/maintenance', async (req, res) => {
   res.json(vehicles);
 });
 
+router.post('/maintenance', async (req, res) => {
+  if (!(await isEmployee(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  if (!assertSchema(req.body, {
+    vin: 'string',
+    serviceType: 'string',
+    utc: 'number'
+  })) {
+    res.status(400).send('Bad Request');
+  }
+  const {
+    vin,
+    serviceType,
+    utc
+  } = req.body;
+  await query(`INSERT INTO maintenance(vin, service_type, utc) VALUES (?, ?, ?);`, vin, serviceType, utc);
+  res.json({
+    success: true
+  });
+});
+
 router.post('/createClientAccount', async (req, res) => {
   if (!assertSchema(req.body, {
     driversLicenseNumber: 'string',
@@ -241,7 +263,7 @@ router.post('/createClientAccount', async (req, res) => {
     return;
   }
   try {
-    await query(`INSERT INTO client(email_address, drivers_license_number, credit_card_number, credits) VALUES (?, ?, ?, ?)`,
+    await query(`INSERT INTO client(email_address, drivers_license_number, credit_card_number, credits) VALUES (?, ?, ?, ?);`,
         identity, driversLicenseNumber, creditCardNumber, 0);
     res.json({
       success: true
@@ -346,10 +368,6 @@ router.get('/analytics', async (req, res) => {
     label: 'Vehicles with a mileage of more than 50000 miles',
     columns: ['Make', 'Model', 'Year'],
     table: await query(`SELECT Make, Model, Year FROM vehicle WHERE mileage > 50000;`)
-  }, {
-    label: 'Driver\'s license numbers of clients that have driven a Ford Focus',
-    columns: ['Driver\'s License Number'],
-    table: await query(`SELECT drivers_license_number 'Driver\\'s License Number' FROM vehicle NATURAL JOIN trip_details NATURAL JOIN client WHERE make = 'Ford' AND model = 'Focus';`)
   }, {
     label: 'Driver\'s license numbers of clients that have driven a Ford Focus',
     columns: ['Driver\'s License Number'],

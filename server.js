@@ -311,6 +311,17 @@ router.post('/addCredits', async (req, res) => {
   });
 });
 
+router.post('/resetInternPasswords', async (req, res) => {
+  if (!(await isEmployee(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  await query(`UPDATE role NATURAL JOIN job_type NATURAL JOIN employee NATURAL JOIN account SET password_hash='' WHERE employee_type = 'Intern';`);
+  res.json({
+    success: true
+  });
+});
+
 router.get('/analytics', async (req, res) => {
   if (!(await isEmployee(req.session.identity))) {
     res.status(401).send('Unauthorized');

@@ -245,6 +245,7 @@ router.post('/createClientAccount', async (req, res) => {
     creditCardNumber: 'string'
   })) {
     res.status(400).send('Bad Request');
+    return;
   }
   const {
     driversLicenseNumber,
@@ -288,6 +289,28 @@ router.get('/resetInternPasswords', async (req, res) => {
   }
 });
 
+router.post('/addCredits', async (req, res) => {
+  if (!(await isEmployee(req.session.identity))) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+  if (!assertSchema(req.body, {
+    credits: 'number',
+    client: 'string'
+  })) {
+    res.status(400).send('Bad Request');
+    return;
+  }
+  const {
+    credits,
+    client
+  } = req.body;
+  await query(`UPDATE client SET credits = credits + ? WHERE email_address = ?`, credits, client);
+  res.json({
+    success: true
+  });
+});
+
 router.get('/analytics', async (req, res) => {
   if (!(await isEmployee(req.session.identity))) {
     res.status(401).send('Unauthorized');
@@ -306,10 +329,10 @@ router.get('/analytics', async (req, res) => {
     action: {
       message: 'Add 10 credits.',
       method: 'POST',
-      url: '/addCredits',
+      url: '/api/addCredits',
       body: {
         credits: 10,
-        client: Object.values(mostTripsClient)[0]
+        client: Object.values(mostTripsClient[0])[0]
       }
     }
   }, {
@@ -379,7 +402,7 @@ router.get('/analytics', async (req, res) => {
     action: {
       message: 'Reset Intern Passwords.',
       method: 'POST',
-      url: '/resetInternPasswords'
+      url: '/api/resetInternPasswords'
     }
   }, {
     label: 'Rates in Washington D.C for less than 10$',
